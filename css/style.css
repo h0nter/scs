@@ -1,0 +1,16 @@
+.nav{
+  height: 50px;
+  width: 1vw;
+  background-color: #BC0606;
+  filter: opacity(88%);
+}
+
+.nav-button{
+  width: 12.5%;
+  background-color: inherit;
+}
+
+#main{
+  background-color: inherit;
+  background-size: cover;
+}
