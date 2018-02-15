@@ -26,14 +26,26 @@
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <div id="landing-page" style="background-image: url(images/cpu_27_blur_fade.jpg);">
-  <div class="nav">
+  <div class="nav-bar">
     <div class="container">
+      <div id="nav" class="twelve columns">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Prices</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">My Account</a></li>
+          <li><a href="#">Booking</a></li>
+          <li><a href="#">Sign In</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
 
 <div id="about">
-  
+asd
 </div>
 
 <!-- End Document
