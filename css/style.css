@@ -1,3 +1,12 @@
+body{
+  font-family: "Work Sans", serif;
+}
+
+h1,h2,h3,h4,h5,h6{
+  margin: 0;
+  padding: 0;
+}
+
 .nav-bar{
   width: 100vw;
   max-width: 100%;
@@ -5,10 +14,6 @@
   filter: opacity(88%);
   align-items: center;
   text-align: center;
-  font-family: "Work Sans", serif;
-}
-
-.container{
 }
 
 #nav{
@@ -44,8 +49,42 @@
   width: 100vw;
   max-width: 100%;
   background-size: cover;
+  color: white;
+  margin: 0 0 50px 0;
 }
 
-#about{
-  height: 1000px;
+#header{
+  float: none;
+  display: flex;
+  height: inherit;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#header h1{
+  font-family: "Roboto";
+  font-size: 19rem;
+}
+
+#header h3{
+  font-size: 4rem;
+}
+
+#header h5{
+  font-size: 2rem;
+}
+
+
+#about .container{
+  text-align: left;
+}
+
+#about h4{
+  font-size: 3.8rem;
+  font-weight: 600;
+}
+
+#about-slide-in{
+  margin: 20px 0;
+  transform: translate(-200px, 0px);
 }
