@@ -7,9 +7,12 @@ h1,h2,h3,h4,h5,h6{
   padding: 0;
 }
 
+/*Navigation bar*/
+
 .nav-bar{
   width: 100vw;
   max-width: 100%;
+  font-size: 1.7rem;
   background-color: #BC0606;
   filter: opacity(88%);
   align-items: center;
@@ -23,13 +26,13 @@ h1,h2,h3,h4,h5,h6{
 
 #nav ul{
   margin: 0;
-  padding: 10px 0;
+  padding: 12px 0;
   list-style: none;
 }
 
 #nav ul li{
   display: inline;
-  padding: 0 28px;
+  padding: 0 20px;
   margin-bottom: 130px;
 }
 
@@ -42,6 +45,8 @@ h1,h2,h3,h4,h5,h6{
 #nav ul li a:hover{
   text-decoration: underline;
 }
+
+/*Landing page*/
 
 #landing-page{
   position: relative;
@@ -77,6 +82,12 @@ h1,h2,h3,h4,h5,h6{
   font-size: 2rem;
 }
 
+/*About*/
+
+#about{
+  overflow: hidden;
+  margin-bottom: 50px;
+}
 
 #about .container{
   text-align: left;
@@ -88,6 +99,47 @@ h1,h2,h3,h4,h5,h6{
 }
 
 #about-slide-in{
+  position: relative;
+  width: 1130px;
+  height: 369px;
   margin: 20px 0;
-  transform: translate(-200px, 0px);
+  transform: translate(-550px, 0px);
+}
+
+#about-slide-in p{
+  position: absolute;
+  top: 50%;
+  font-size: 1.8rem;
+  color: white;
+  font-weight: 400;
+  text-align: left;
+  transform: translate(700px, 0px) translate(0, -50%);
+  width: 300px;
+}
+
+#about-s-gallery{
+  position: relative;
+  display: flex;
+  transform: translate(4vw, 0);
+}
+
+.slide-image{
+  margin: 0 -50px;
+}
+
+/*Services*/
+
+#services{
+  height: 100vh;
+  margin-top: 200px;
+  text-align: center;
+}
+
+#services h3{
+  font-weight: 600;
+  font-size: 8.8rem;
+}
+
+.img-row{
+  
 }
