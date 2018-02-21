@@ -1,19 +1,82 @@
+/*Base styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 html, body{
   font-family: "Work Sans", serif;
 }
 
-h1,h2,h3,h4,h5,h6{
-  margin: 0;
-  padding: 0;
+html{
+  font-size: 62.5%;
 }
 
-/*Navigation bar*/
+body{
+  margin: 0;
+  font-size: 1.5em;
+  line-height: 1.6;
+  font-weight: 400;
+  background-color: white;
+  color: #222;
+}
 
+.heading{
+  text-align: center;
+}
+
+.heading > h1{
+  font-weight: 600;
+  font-size: 8.8rem;
+}
+
+/*Container
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box; }
+
+/* Typography
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  padding: 0;
+  font-weight: 300; }
+h1 { font-size: 4.0rem; line-height: 1.2;  letter-spacing: -.1rem;}
+h2 { font-size: 3.6rem; line-height: 1.25; letter-spacing: -.1rem; }
+h3 { font-size: 3.0rem; line-height: 1.3;  letter-spacing: -.1rem; }
+h4 { font-size: 2.4rem; line-height: 1.35; letter-spacing: -.08rem; }
+h5 { font-size: 1.8rem; line-height: 1.5;  letter-spacing: -.05rem; }
+h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
+
+@media (min-width: 550px) {
+  h1 { font-size: 5.0rem; }
+  h2 { font-size: 4.2rem; }
+  h3 { font-size: 3.6rem; }
+  h4 { font-size: 3.0rem; }
+  h5 { font-size: 2.4rem; }
+  h6 { font-size: 1.5rem; }
+}
+
+p {
+  margin-top: 0; }
+
+/* Misc
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+hr {
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  border-width: 0;
+  border-top: 1px solid #E1E1E1; }
+
+/*Navigation bar
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 .nav-bar{
   width: 100vw;
   max-width: 100%;
   font-size: 1.7rem;
-  background-color: #BC0606;
+  background-color: #b81919;
   filter: opacity(88%);
   align-items: center;
   text-align: center;
@@ -43,11 +106,11 @@ h1,h2,h3,h4,h5,h6{
 }
 
 #nav ul li a:hover{
-  text-decoration: underline;
+  color: #5B0606;
 }
 
-/*Landing page*/
-
+/*Landing page
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 #landing-page{
   position: relative;
   height: 100vh;
@@ -71,6 +134,7 @@ h1,h2,h3,h4,h5,h6{
 
 #header h1{
   font-family: "Roboto";
+  font-weight: 300;
   font-size: 19rem;
 }
 
@@ -82,15 +146,15 @@ h1,h2,h3,h4,h5,h6{
   font-size: 2rem;
 }
 
-/*About*/
-
+/*About
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 #about{
   overflow: hidden;
   margin-bottom: 50px;
 }
 
 #about .container{
-  text-align: left;
+  text-align: center;
 }
 
 #about h4{
@@ -124,22 +188,71 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .slide-image{
-  margin: 0 -50px;
+  margin: 0 -60px;
 }
 
-/*Services*/
-
+/*Services
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 #services{
-  height: 100vh;
-  margin-top: 200px;
-  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(3, 4fr);
+  grid-template-rows: 8.8rem 1fr 1fr 1fr;
+  /*grid-template-areas:
+    "about-heading about-heading about-heading"
+    "img1 img2 img3"
+    "img4 img5 img6"
+    "img7 img8 img9";*/
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 3rem;
+  height: 900px;
+  margin: 100px 0 0 0;
+  justify-items: center;
+  align-items: center;
 }
 
-#services h3{
-  font-weight: 600;
-  font-size: 8.8rem;
+#services .heading{
+  grid-column: 1/4;
+  grid-row: 1;
 }
 
-.img-row{
-  
+.offer-img{
+  grid-column: span 1;
+}
+
+.offer-img img{
+  width: 200px;
+}
+
+/*Contact
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#contact{
+  display: grid;
+  grid-template-columns: repeat(6, 2fr);
+  grid-template-rows: grid-template-rows: 8.8rem 369px 1fr 1fr;
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 3rem;
+  height: 900px;
+  margin-top: 100px;
+  justify-items: center;
+  align-items: center;
+}
+
+#contact .heading{
+  grid-column: 1/7;
+  grid-row: 1;
+  background-color: #999;
+}
+
+#map{
+  grid-column: 1/4;
+  grid-row: 2;
+  height: 369px;
+  background-color: #555;
+}
+
+#contact-slide-in{
+  position: relative;
+  width: 1091px;
+  height: 369px;
+  /*transform: translate(500px, -369px);*/
 }
