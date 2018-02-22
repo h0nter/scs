@@ -197,11 +197,6 @@ hr {
   display: grid;
   grid-template-columns: repeat(3, 4fr);
   grid-template-rows: 8.8rem 1fr 1fr 1fr;
-  /*grid-template-areas:
-    "about-heading about-heading about-heading"
-    "img1 img2 img3"
-    "img4 img5 img6"
-    "img7 img8 img9";*/
   grid-column-gap: 0.5rem;
   grid-row-gap: 3rem;
   height: 900px;
@@ -232,7 +227,7 @@ hr {
   grid-column-gap: 0.5rem;
   grid-row-gap: 3rem;
   height: 100vh;
-  margin: 100px 0 0 0;
+  margin: 10rem 0 0 0;
   overflow: hidden;
 }
 
@@ -276,4 +271,51 @@ hr {
   width: 100%;
   heigth: 20rem;
   background-color: #777;
+}
+
+/*Footer
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#footer{
+  width: 100%;
+  padding: 0.5rem 0;
+  min-height: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  margin: 10rem 0 0 0;
+  background-color: #787B7D;
+}
+
+#footer h5{
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-weight: 300;
+  font-size: 1.8rem;
+}
+
+#footer h6{
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+#footer .container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#dev-signature{
+  width: 33.3%;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: center;
 }
