@@ -109,7 +109,7 @@ hr {
   color: #5B0606;
 }
 
-/*Landing page
+/*Landing page - main page
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 #landing-page{
   position: relative;
@@ -144,6 +144,39 @@ hr {
 
 #header h5{
   font-size: 2rem;
+}
+
+/*Landing page - MyAccount
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#landing-page-account{
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  background-color: inherit;
+  background-size: cover;
+  background-position: top center;
+  background-attachment: fixed;
+  color: #222;
+  margin: 0 0 0 0;
+}
+
+#header-account{
+  float: none;
+  display: flex;
+  height: 94%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#header-account h1{
+  font-weight: 600;
+  font-size: 9.2rem;
+}
+
+#header-account h3{
+  font-weight: 500;
+  font-size: 2.9rem;
 }
 
 /*About
