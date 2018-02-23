@@ -430,3 +430,58 @@ hr {
 .m-bar h3:hover{
   color: #FC9999;
 }
+
+.m-bar a{
+  text-decoration: none;
+  color: white;
+}
+.m-bar h3 a:hover{
+  color: #FC9999;
+}
+
+/*My Bookings - MyAccount
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#booking-main .heading{
+  margin: 5rem 0 0 0;
+}
+
+#booking-dat-section{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-tempalte-rows: auto;
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 3rem;
+  margin: 4rem 0 0 0;
+}
+
+#calendar-view{
+  grid-column: 1;
+  grid-row: 1;
+  height: 32.9rem;
+  widht: 45.7rem;
+  background-color: pink;
+}
+
+#list-view{
+  grid-column: 2;
+  grid-row: 1;
+  height: 32.9rem;
+  widht: 45.7rem;
+  background-color: #f4f0d2;
+}
+
+#booking-details{
+  grid-column: 1/3;
+  grid-row: 2;
+  height: 30rem;
+  widht: 100%;
+  background-color: honeydew;
+}
+
+#cancel-booking-button{
+  grid-column: 1/3;
+  grid-row: 3;
+  height: 5rem;
+  widht: 100%;
+  background-color: #D93636;
+}
