@@ -27,53 +27,36 @@
 
   <!-- Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <!-- Landing page & nav-bar -->
-  <div id="account-main" style="background-image: url(images/gradient.jpg);">
-
-    <div id="landing-page-account">
-      <div class="nav-bar">
-        <div id="nav">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Prices</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="myaccount.html" style="color: #5B0606">My Account</a></li>
-            <li><a href="#">Booking</a></li>
-            <li><a href="#">Sign In</a></li>
-          </ul>
-        </div>
+  <div id="password-change-main">
+    <div class="nav-bar">
+      <div id="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Prices</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="myaccount.html" style="color: #5B0606">My Account</a></li>
+          <li><a href="#">Booking</a></li>
+          <li><a href="#">Sign In</a></li>
+        </ul>
       </div>
-
-        <div id="header-account" class="container">
-          <div class="row" style="text-align: center;">
-            <h1>Hi Jim</h1>
-            <h3>It's nice to see you again</h3>
-          </div>
-        </div>
     </div>
 
-    <div id="account-menu" class="container">
-      <div id="menu-stripe">
-        <div id="init-circle">
-          <h1>J</h1>
-        </div>
-
-        <div id="menu-bars">
-          <div class="m-bar" style="background-image: url(images/Menu-bar1.png); width: 48.5rem;">
-            <h3 style="font-size: 4.3rem;"><a href="mybookings.html">My Bookings</a></h3>
-          </div>
-
-          <div class="m-bar" style="background-image: url(images/Menu-bar2.png); width: 42.1rem;">
-            <h3 style="font-size: 4.2rem;"><a href="details_edit.html">Edit My Details</a></h3>
-          </div>
-
-          <div class="m-bar" style="background-image: url(images/Menu-bar3.png); width: 36.2rem;">
-            <h3 style="font-size: 3.6rem;"><a href="passchange.html">Change Password</a></h3>
-          </div>
-        </div>
+    <div id="password-change-form" class="container">
+      <div class="heading">
+        <h1>Change Password</h1>
       </div>
+
+      <form>
+        <label for="current-password" class="p-form-label">Current Password:</label> <input type="password" name="current-password" placeholder=""><br>
+
+        <label for="new-password" class="p-form-label">New Password:</label> <input type="password" name="new-password" placeholder=""><br>
+
+        <label for="confirm-password" class="p-form-label">Confirm Password:</label> <input type="password" name="confirm-password" placeholder=""><br>
+
+        <input type="submit" value="Confirm">
+      </form>
     </div>
   </div>
 
