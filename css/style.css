@@ -568,3 +568,32 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
   align-items: center;
   height: 94%;
 }
+
+/*Sign-In - MyAccount
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#sign-in-main{
+  max-width: 100%;
+  margin: 0 0 0 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+#sign-in-main input[type=submit]{
+  width: 15rem;
+  margin-top: 2rem;
+  transform: translate(8.05rem, 0);
+}
+
+#sign-in-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 94%;
+}
+
+#sign-in-form form{
+  font-size: 2.4rem;
+  font-weight: 600;
+  display: initial;
+}
