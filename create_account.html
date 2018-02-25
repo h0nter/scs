@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Smith's Computer Service</title>
+  <meta name="description" content="Computer service located in Brighton, UK">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONTS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Work+Sans:300,400,500,600|Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- JavaScript
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/functions.js"></script>
+  <!-- Page icon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="nav-bar">
+    <div id="nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Prices</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="myaccount.html">My Account</a></li>
+        <li><a href="#">Booking</a></li>
+        <li><a href="sign_in.html">Sign In</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="account-create-main" class="container">
+    <div class="heading">
+      <h1>Create Account</h1>
+    </div>
+
+    <div id="account-create-form">
+      <form>
+        <div id="required-data">
+          <label for="forename" class="d-form-label">Forename<span style="color: red;">*</span>:</label> <input type="text" name="forename"><br>
+
+          <label for="surname" class="d-form-label">Surname<span style="color: red;">*</span>:</label><input type="text" name="surname"><br>
+
+          <label for="email-address" class="d-form-label">E-mail address<span style="color: red;">*</span>:</label><input type="text" name="email-address"><br>
+
+          <label for="u-password" class="d-form-label">Password<span style="color: red;">*</span>:</label><input type="password" name="u-password"><br>
+
+          <label for="pass-confirm" class="d-form-label">Confirm password<span style="color: red;">*</span>:</label><input type="password" name="pass-confirm"><br>
+        </div>
+
+        <h3>Additional Information</h3>
+
+        <div id="additional-data">
+          <label for="phone-num" class="d-form-label">Phone Number:</label><input type="text" name="phone-num"><br>
+
+          <label for="address-line1" class="d-form-label">Address:</label><input type="text" name="address-line1"><br>
+
+          <label for="address-line2" class="d-form-label">Address (line 2):</label><input type="text" name="address-line2"><br>
+
+          <label for="city" class="d-form-label">City:</label><input type="text" name="city"><br>
+
+          <label for="postcode" class="d-form-label">Postcode:</label><input type="text" name="postcode" style="max-width: 15rem;"><br>
+
+          <input type="submit" value="Create your account">
+        </div>
+
+      </form>
+    </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
