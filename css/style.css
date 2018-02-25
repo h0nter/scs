@@ -580,7 +580,7 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
 
 #sign-in-main input[type=submit]{
   width: 15rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   transform: translate(8.05rem, 0);
 }
 
@@ -596,4 +596,25 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
   font-size: 2.4rem;
   font-weight: 600;
   display: initial;
+}
+
+#register-reset-links{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#register-reset-links h3{
+  font-size: 2rem;
+  margin: 0.5rem 0;
+}
+
+#register-reset-links a{
+  text-decoration: none;
+  color: #0F65D5;
+}
+
+#register-reset-links a:hover{
+  color: #124A92;
 }
