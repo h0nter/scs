@@ -114,6 +114,22 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
   box-shadow: 1px 2px 6px rgba(0, 0, 0, .4);
 }
 
+/*Overlay
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.overlay{
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 1000%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(92,94,96,0.55);
+  z-index: 2;
+  cursor: pointer;
+}
+
 /*Navigation bar
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .nav-bar{
@@ -150,6 +166,20 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
 }
 
 #nav ul li a:hover{
+  color: #5B0606;
+}
+
+#nav .astext{
+  background:none;
+  border:none;
+  margin:0;
+  padding:0;
+  font-family: "Work Sans", serif;
+  font-size: 1.7rem;
+  color: white;
+}
+
+#nav .astext:hover{
   color: #5B0606;
 }
 
