@@ -8,10 +8,13 @@ $(window).scroll(function(){
 
 });
 
+/*Open and close the booking form
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 function on() {
-    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("overlay").style.display = "flex"; //open booking form
 }
 
 function off() {
-    document.getElementById("overlay").style.display = "none";
+    document.getElementById("overlay").style.display = "none"; //close booking form
+    document.getElementById("b-form").reset(); //reset booking form
 }

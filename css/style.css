@@ -26,6 +26,11 @@ body{
   font-size: 8.8rem;
 }
 
+.heading >h3{
+  font-weight: 600;
+  font-size: 5.5rem;
+}
+
 /*Container
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {
@@ -779,27 +784,140 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
 /*Booking form
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 #booking-form-main{
-  padding: 1.5rem 0 0 0;
+  display: grid;
+  grid-column-template: 1fr;
+  grid-row-template: auto;
+  padding: 1.5rem;
+  background-color: #ECEEEF;
+  overflow-y: scroll;
 }
 
 #booking-form{
+  grid-row: 2;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   max-width: 95rem;
-  height: 40rem;
   background-color: #ECEEEF;
   padding: 1.5rem;
 }
 
 #booking-form form{
-  margin: 6rem 0 0 0;
+  margin: 0;
+}
+
+#booking-form .heading{
+  grid-column: 1/11;
+  grid-row: 1;
+}
+
+#booking-form h4{
+  font-size: 2.7rem;
+  font-weight: 600;
+  margin: 2rem 0 0 0;
+}
+
+#computer-type-s{
+  grid-column: 1/4;
+  grid-row: 2;
+}
+
+#computer-type-s select{
+  height: 15rem;
+  width: 100%;
+  font-size: 5rem;
+}
+
+#computer-details{
+  grid-column: 4/11;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 0.5rem;
+  align-content: end;
+}
+
+#service-details{
+  grid-row: 3;
+  grid-column: 1/11;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 3rem 0 0 0;
+}
+
+#delivery-method{
+  grid-column: 1/11;
+  grid-row: 4;
+}
+
+#date-select{
+  grid-column: 1/11;
+  grid-row: 5;
+}
+
+#personal-information{
+  grid-column: 1/11;
+  grid-row: 6;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-column-gap: 0.5rem;
+}
+
+#col-1{
+  grid-column: 1/2;
+  grid-row: 2;
+}
+
+#col-1 input{
+  width: 40rem;
+}
+
+#col-2{
+  grid-column: 2/3;
+  grid-row: 2;
+}
+
+#col-2 input{
+  width: 40rem;
+}
+
+#description{
+  grid-column: 1/11;
+  grid-row: 7;
+}
+
+#description textarea{
+  width: 98%;
+  font-family: "Work Sans", serif;
+  font-size: 2rem;
+  border: 0.1rem solid #707070;
+  border-radius: 4px;
+  padding: 0 1rem;
+}
+
+#form-submit{
+  grid-column: 1/11;
+  grid-row: 8;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.4rem;
+}
+
+#form-submit input[type=submit]{
+  width: 15rem;
 }
 
 #close-x{
+  grid-row: 1;
   width: 4rem;
   height: 4rem;
   background-size: contain;
+  justify-self: end;
 }
 
 #close-x img{
@@ -808,4 +926,31 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
 
 #close-x img:hover{
   content: url(../images/close-cross3.png);
+}
+
+#booking-form form{
+  font-size: 2rem;
+  font-weight: 600;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-column-gap: 1.5rem;
+}
+
+#booking-form label{
+  grid-column: 1/2;
+  font-size: 2rem;
+  text-align: right;
+}
+
+#booking-form input, #booking-form select{
+  font-family: "Work Sans", serif;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+#booking-form select, #booking-form input[type=date]{
+  grid-column: 2/3;
+  border: 0.1rem solid #707070;
+  border-radius: 4px;
+  padding: 0 1rem;
 }
