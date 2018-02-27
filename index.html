@@ -28,7 +28,27 @@
   <!-- Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <!-- Landing page & nav-bar -->
-  <div class="overlay" onclick="off()">Overlay Text</div>
+  <div id="overlay">
+  	<div id="booking-form-main">
+  		<div id="booking-form">
+  			<form>
+  				<label for="forename" class="d-form-label">Forename<span style="color: red;">*</span>:</label> <input type="text" name="forename"><br>
+
+  				<label for="surname" class="d-form-label">Surname<span style="color: red;">*</span>:</label><input type="text" name="surname"><br>
+
+  				<label for="email-address" class="d-form-label">E-mail address<span style="color: red;">*</span>:</label><input type="text" name="email-address"><br>
+
+  				<label for="u-password" class="d-form-label">Password<span style="color: red;">*</span>:</label><input type="password" name="u-password"><br>
+
+  				<label for="pass-confirm" class="d-form-label">Confirm password<span style="color: red;">*</span>:</label><input type="password" name="pass-confirm"><br>
+			  </form>
+
+        <div id="close-x" onclick="off()">
+          <img src="images/close-cross2.png" />
+        </div>
+		  </div>
+    </div>
+  </div>
   <div id="landing-page" style="background-image: url(images/cpu_27_blur_fade.jpg);">
     <div class="nav-bar">
       <div id="nav">
@@ -39,7 +59,7 @@
           <li><a href="#">Prices</a></li>
           <li><a href="#">Contact</a></li>
           <li><a href="myaccount.html">My Account</a></li>
-          <li><button class="astext">Booking</button></li>
+          <li><button class="astext" onclick="on()">Booking</button></li>
           <li><a href="sign_in.html">Sign In</a></li>
         </ul>
       </div>

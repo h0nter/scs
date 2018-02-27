@@ -90,7 +90,7 @@ input{
   font-weight: 400;
 }
 
-input[type=text], input[type=password]{
+input[type=text], input[type=password], input[type=email]{
   grid-column: 2/3;
   border: 0.1rem solid #707070;
   border-radius: 4px;
@@ -116,18 +116,19 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
 
 /*Overlay
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.overlay{
+#overlay{
   position: fixed;
   display: none;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  height: 1000%;
+  height: 100%;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(92,94,96,0.55);
   z-index: 2;
-  cursor: pointer;
 }
 
 /*Navigation bar
@@ -773,4 +774,38 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
 
 #pass-reset-form input[type=text]{
   width: 50rem;
+}
+
+/*Booking form
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#booking-form-main{
+  padding: 1.5rem 0 0 0;
+}
+
+#booking-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 95rem;
+  height: 40rem;
+  background-color: #ECEEEF;
+  padding: 1.5rem;
+}
+
+#booking-form form{
+  margin: 6rem 0 0 0;
+}
+
+#close-x{
+  width: 4rem;
+  height: 4rem;
+  background-size: contain;
+}
+
+#close-x img{
+  height: 4rem;
+}
+
+#close-x img:hover{
+  content: url(../images/close-cross3.png);
 }
