@@ -760,7 +760,7 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
 #pass-reset-main input[type=submit]{
   width: 25rem;
   margin-top: 3.5rem;
-  transform: translate(13.5rem, 0);
+  transform: translate(3.5rem, 0);
 }
 
 #pass-reset-form{
@@ -803,7 +803,18 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
 }
 
 #booking-form form{
+  font-size: 2rem;
+  font-weight: 600;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-column-gap: 1.5rem;
   margin: 0;
+}
+
+#booking-form label{
+  grid-column: 1/2;
+  font-size: 2rem;
+  text-align: right;
 }
 
 #booking-form .heading{
@@ -926,20 +937,6 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
 
 #close-x img:hover{
   content: url(../images/close-cross3.png);
-}
-
-#booking-form form{
-  font-size: 2rem;
-  font-weight: 600;
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-column-gap: 1.5rem;
-}
-
-#booking-form label{
-  grid-column: 1/2;
-  font-size: 2rem;
-  text-align: right;
 }
 
 #booking-form input, #booking-form select{
