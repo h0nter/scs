@@ -27,6 +27,129 @@
 
   <!-- Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- Booking form (overlay) -->
+  <div id="overlay">
+    <div id="booking-form-main">
+      <div id="booking-form">
+        <form id="b-form">
+          <div class="heading">
+            <h3>Booking form</h3>
+          </div>
+
+          <div id="computer-type-s">
+            <label for="computer-type" class="d-form-label">Computer type:</label><br>
+            <select name="computer-type" required>
+              <option></option>
+              <option value="PC">PC</option>
+              <option value="Laptop">Laptop/Notebook</option>
+              <option value="Macbook">Macbook</option>
+              <option value="iMac">iMac</option>
+            </select>
+          </div>
+
+          <div id="computer-details">
+            <label for="make" class="d-form-label">Computer make:</label>
+            <select name="make" required>
+              <option></option>
+              <option value="HP">HP</option>
+              <option value="Lenovo">Lenovo</option>
+              <option value="Dell">Dell</option>
+              <option value="Asus">Asus</option>
+              <option value="Acer">Acer</option>
+              <option value="Apple">Apple</option>
+              <option value="Alienware">Alienware</option>
+              <option value="Other">Other</option>
+            </select><br>
+
+            <label for="model" class="d-form-label">Computer model:</label>
+            <input type="text" name="model"><br>
+
+            <label for="year" class="d-form-label">Year of production:</label>
+            <input type="text" name="year">
+          </div>
+
+          <div id="service-details">
+            <div class="label-item-rel">
+              <label for="type-os" class="d-form-label">Type of service:</label>
+              <select name="type-os" required>
+                <option></option>
+                <option value="OS install">OS install/re-install</option>
+                <option value="cleaning">Device cleaning</option>
+                <option value="hw-update">Hardware update</option>
+                <option value="pc-build">Building a new PC</option>
+                <option value="screen-replacment">Screen replacment</option>
+                <option value="hard-drive-recovery">Hard-drive data recovery</option>
+                <option value="Other">Other</option>
+              </select><br>
+            </div>
+
+            <div class="label-item-rel">
+              <label for="devices-num" class="d-form-label">Number of devices:</label>
+              <select name="devices-num" required>
+                <option></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="more">More</option>
+              </select><br>
+            </div>
+          </div>
+
+          <div id="delivery-method">
+            <h4>DELIVERY METHOD:</h4>
+            <input type="radio" name="d-method" value="in-person"> In-person<br>
+
+            <input type="radio" name="d-method" value="collect-delivery"> Collect & Delivery (extra cost)<br>
+          </div>
+
+          <div id="date-select">
+            <h4>SELECT THE DATE:</h4>
+            <input type="date" name="booking-date">
+          </div>
+
+          <div id="personal-information">
+            <div style="grid-column: 1/3; grid-row: 1;">
+              <h4>PERSONAL INFORMATION:</h4>
+            </div>
+            <div id="col-1">
+              <input type="text" name="forename" placeholder="Forename*"><br>
+
+              <input type="text" name="surname" placeholder="Surname*"><br>
+
+              <input type="email" name="email-address" placeholder="E-mail address*"><br>
+
+              <input type="text" name="phone-num" placeholder="Phone Number*"><br>
+            </div>
+
+            <div id="col-2">
+              <input type="text" name="address-line1" placeholder="Address"><br>
+
+              <input type="text" name="address-line2" placeholder="Address (line 2)"><br>
+
+              <input type="text" name="city" placeholder="City"><br>
+
+              <input type="text" name="postcode" placeholder="Postcode" style="max-width: 15rem;"><br>
+            </div>
+          </div>
+
+          <div id="description">
+            <h4>FAULT/PROBLEM/SERVICE DESCRIPTION:</h4>
+            <textarea name="service-description" maxlength="1000" rows="5" placeholder="Max. 1000 characters"></textarea>
+          </div>
+
+          <div id="form-submit">
+            <input type="submit" value="Submit">
+          </div>
+        </form>
+      </div>
+      <div id="close-x" onclick="off()">
+        <img src="images/close-cross2.png" />
+      </div>
+    </div>
+  </div>
+
   <div class="nav-bar">
     <div id="nav">
       <ul>
@@ -36,7 +159,7 @@
         <li><a href="#">Prices</a></li>
         <li><a href="#">Contact</a></li>
         <li><a href="myaccount.html" style="color: #5B0606">My Account</a></li>
-        <li><a href="#">Booking</a></li>
+        <li><button class="astext" onclick="on()">Booking</button></li>
         <li><a href="#">Sign In</a></li>
       </ul>
     </div>
