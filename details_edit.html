@@ -18,6 +18,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/functions.js"></script>
+  <script src="js/details_change_val.js"></script>
   <!-- Page icon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
@@ -171,7 +172,7 @@
     </div>
 
     <div id="details-edit-form">
-      <form>
+      <form id="d-edit-form" onsubmit="return !!(valForenameDet() & valSurnameDet() & valEmailDet() & valPhoneNumDet() & valAddressDet() & valAddress2Det() & valCityDet() & valPostcodeDet());">
         <label for="forename" class="d-form-label">Forename:</label> <input type="text" name="forename" id="details-forename" value="Jim"><br>
 
         <label for="surname" class="d-form-label">Surname:</label><input type="text" name="surname" id="details-surname" value="Kovalsky"><br>

@@ -1,4 +1,4 @@
-function valYearOfProd(){
+function valYearOfProdbook(){
   var yop = document.forms["b-form"]["year"].value;
   const yearProd = document.getElementById("year-prod");
   const regex = /^((19||20)+([0-9]{2}))$/;
@@ -12,7 +12,7 @@ function valYearOfProd(){
   }
 }
 
-function valForename(){
+function valForenamebook(){
   var forename = document.forms["b-form"]["forename"].value;
   const forenameObj = document.getElementById("booking-forename");
   const regex = /^[a-zA-Z]{2,30}$/;
@@ -26,10 +26,10 @@ function valForename(){
   }
 }
 
-function valSurname(){
+function valSurnamebook(){
   var surname = document.forms["b-form"]["surname"].value;
   const surnameObj = document.getElementById("booking-surname");
-  const regex = /^[a-zA-Z]{2,30}$/;
+  const regex = /^([a-zA-Z]+[-\s]?[a-zA-Z]{1,29})$/;
 
   if (regex.test(surname)){
     return true;
@@ -40,7 +40,7 @@ function valSurname(){
   }
 }
 
-function valEmail(){
+function valEmailbook(){
   var email = document.forms["b-form"]["email-address"].value;
   const emailObj = document.getElementById("booking-email");
   const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[a-z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
@@ -54,10 +54,10 @@ function valEmail(){
   }
 }
 
-function valPhoneNum(){
+function valPhoneNumbook(){
   var phoneNum = document.forms["b-form"]["phone-num"].value;
   const phoneNumObj = document.getElementById("booking-phone-num");
-  const regex = /^[0-9]{10,14}$/;
+  const regex = /^[0-9]{11,14}$/;
 
   if (regex.test(phoneNum)){
     return true;
@@ -68,10 +68,10 @@ function valPhoneNum(){
   }
 }
 
-function valAddress(){
+function valAddressbook(){
   var address = document.forms["b-form"]["address-line1"].value;
   const addressObj = document.getElementById("booking-addl1");
-  const regex = /^[a-zA-Z0-9]{2,50}$/;
+  const regex = /^[a-zA-Z0-9\s]{2,50}$/;
 
   if (regex.test(address)){
     return true;
@@ -82,10 +82,10 @@ function valAddress(){
   }
 }
 
-function valAddress2(){
+function valAddress2book(){
   var address2 = document.forms["b-form"]["address-line2"].value;
   const address2Obj = document.getElementById("booking-addl2");
-  const regex = /^[a-zA-Z0-9]{2,50}$/;
+  const regex = /^[a-zA-Z0-9\s]{2,50}$/;
 
   if (regex.test(address2) || address2 == ""){
     return true;
@@ -96,7 +96,7 @@ function valAddress2(){
   }
 }
 
-function valCity(){
+function valCitybook(){
   var city = document.forms["b-form"]["city"].value;
   const cityObj = document.getElementById("booking-city");
   const regex = /^[a-zA-Z]{2,20}$/;
@@ -110,7 +110,7 @@ function valCity(){
   }
 }
 
-function valPostcode(){
+function valPostcodebook(){
   var postcode = document.forms["b-form"]["postcode"].value;
   const postcodeObj = document.getElementById("booking-postcode");
   const regex = /^(([a-zA-Z]{2}\d[a-zA-Z]\s\d[a-zA-Z]{2})|([a-zA-Z]\d[a-zA-Z]\s\d[a-zA-Z]{2})|([a-zA-Z]\d\s\d[a-zA-Z]{2})|([a-zA-Z]\d{2}\s\d[a-zA-Z]{2})|([a-zA-Z]{2}\d\s\d[a-zA-Z]{2})|([a-zA-Z]{2}\d{2}\s\d[a-zA-Z]{2}))$/;
@@ -124,7 +124,7 @@ function valPostcode(){
   }
 }
 
-function valDescription(){
+function valDescriptionbook(){
   var description = document.forms["b-form"]["service-description"].value;
   const descriptionObj = document.getElementById("service-description");
   const regex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]{3,1000}$/;
@@ -138,7 +138,7 @@ function valDescription(){
   }
 }
 
-function valCompType(){
+function valCompTypebook(){
   var comptype = document.forms["b-form"]["computer-type"].value;
   const comptypeObj = document.getElementById("computer-type");
 
