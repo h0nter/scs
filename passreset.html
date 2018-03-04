@@ -18,6 +18,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/functions.js"></script>
+  <script src="js/passreset_val.js"></script>
   <!-- Page icon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
@@ -171,9 +172,9 @@
         <h1>Reset password</h1>
       </div>
 
-      <form>
+      <form id="pass-reset-f" onsubmit="return valEmailReset()">
         <label for="email-address" class="s-form-label">Email address:</label><br>
-        <input type="email" name="email-address"><br>
+        <input type="email" name="email-address" id="pass-reset-email" required><br>
         <input type="submit" value="Reset password">
       </form>
     </div>
