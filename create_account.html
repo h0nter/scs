@@ -18,6 +18,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/functions.js"></script>
+  <script src="js/create_account_val.js"></script>
   <!-- Page icon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
@@ -171,31 +172,31 @@
     </div>
 
     <div id="account-create-form">
-      <form>
+      <form id="account-create-f" onsubmit="return !!(valForenameAcc() & valSurnameAcc() & valEmailAcc() & valPasswords() & valPhoneNumAcc() & valAddressAcc() & valAddress2Acc() & valCityAcc() & valPostcodeAcc());">
         <div id="required-data">
-          <label for="forename" class="d-form-label">Forename<span style="color: red;">*</span>:</label> <input type="text" name="forename"><br>
+          <label for="forename" class="d-form-label">Forename<span style="color: red;">*</span>:</label> <input type="text" name="forename" id="new-account-forename" required><br>
 
-          <label for="surname" class="d-form-label">Surname<span style="color: red;">*</span>:</label><input type="text" name="surname"><br>
+          <label for="surname" class="d-form-label">Surname<span style="color: red;">*</span>:</label><input type="text" name="surname" id="new-account-surname" required><br>
 
-          <label for="email-address" class="d-form-label">E-mail address<span style="color: red;">*</span>:</label><input type="email" name="email-address"><br>
+          <label for="email-address" class="d-form-label">E-mail address<span style="color: red;">*</span>:</label><input type="email" name="email-address" id="new-account-email" required><br>
 
-          <label for="u-password" class="d-form-label">Password<span style="color: red;">*</span>:</label><input type="password" name="u-password"><br>
+          <label for="u-password" class="d-form-label">Password<span style="color: red;">*</span>:</label><input type="password" name="u-password" id="new-account-password" required><br>
 
-          <label for="pass-confirm" class="d-form-label">Confirm password<span style="color: red;">*</span>:</label><input type="password" name="pass-confirm"><br>
+          <label for="pass-confirm" class="d-form-label">Confirm password<span style="color: red;">*</span>:</label><input type="password" name="pass-confirm" id="new-account-passconf" required><br>
         </div>
 
         <h3>Additional Information</h3>
 
         <div id="additional-data">
-          <label for="phone-num" class="d-form-label">Phone Number:</label><input type="text" name="phone-num"><br>
+          <label for="phone-num" class="d-form-label">Phone Number:</label><input type="text" name="phone-num" id="new-account-phonenum"><br>
 
-          <label for="address-line1" class="d-form-label">Address:</label><input type="text" name="address-line1"><br>
+          <label for="address-line1" class="d-form-label">Address:</label><input type="text" name="address-line1" id="new-account-addl1"><br>
 
-          <label for="address-line2" class="d-form-label">Address (line 2):</label><input type="text" name="address-line2"><br>
+          <label for="address-line2" class="d-form-label">Address (line 2):</label><input type="text" name="address-line2" id="new-account-addl2"><br>
 
-          <label for="city" class="d-form-label">City:</label><input type="text" name="city"><br>
+          <label for="city" class="d-form-label">City:</label><input type="text" name="city" id="new-account-city"><br>
 
-          <label for="postcode" class="d-form-label">Postcode:</label><input type="text" name="postcode" style="max-width: 15rem;"><br>
+          <label for="postcode" class="d-form-label">Postcode:</label><input type="text" name="postcode" id="new-account-postcode" style="max-width: 15rem;"><br>
 
           <input type="submit" value="Create your account">
         </div>
