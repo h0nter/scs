@@ -951,3 +951,19 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
   border-radius: 4px;
   padding: 0 1rem;
 }
+
+/*Validate fields
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.invalid-field{
+  border: 0.1rem solid red !important;
+  background-color: #fcd4d4;
+}
+
+.valid-field{
+  border: 0.1rem solid #707070 !important;
+  background-color: default;
+}
+
+.green-bg{
+  background-color: green;
+}
