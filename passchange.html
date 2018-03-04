@@ -18,6 +18,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/functions.js"></script>
+  <script src="js/passchange_val.js"></script>
   <!-- Page icon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
@@ -171,12 +172,12 @@
         <h1>Change Password</h1>
       </div>
 
-      <form>
-        <label for="current-password" class="p-form-label">Current Password:</label> <input type="password" name="current-password" required><br>
+      <form id="pass-change-form" onsubmit="return !!(valCurrentPswrd() & valNewPswrd());">
+        <label for="current-password" class="p-form-label">Current Password:</label> <input type="password" name="current-password" id="pass-change-crntpass" required><br>
 
-        <label for="new-password" class="p-form-label">New Password:</label> <input type="password" name="new-password" required><br>
+        <label for="new-password" class="p-form-label">New Password:</label> <input type="password" name="new-password" id="pass-change-newpass" required><br>
 
-        <label for="confirm-password" class="p-form-label">Confirm Password:</label> <input type="password" name="confirm-password" required><br>
+        <label for="confirm-password" class="p-form-label">Confirm Password:</label> <input type="password" id="pass-change-confirmpass" name="confirm-password" required><br>
 
         <input type="submit" value="Confirm">
       </form>
