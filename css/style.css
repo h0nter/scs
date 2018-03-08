@@ -139,6 +139,9 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
 /*Navigation bar
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .nav-bar{
+  position: fixed;
+  top: 0;
+  z-index: 1;
   width: 100vw;
   max-width: 100%;
   font-size: 1.7rem;
