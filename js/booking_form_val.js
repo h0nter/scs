@@ -138,7 +138,7 @@ function valDescriptionbook(){
   }
 }
 
-function valCompTypebook(){
+/*function valCompTypebook(){
   var comptype = document.forms["b-form"]["computer-type"].value;
   const comptypeObj = document.getElementById("computer-type");
 
@@ -154,4 +154,4 @@ function valCompTypebook(){
     <option value=\"Alienware\">Alienware</option>\
     <option value=\"Other\">Other</option>";
   }
-}
+}*/
