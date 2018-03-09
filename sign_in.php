@@ -155,11 +155,11 @@
     <div class="nav-bar">
       <div id="nav">
         <ul>
-          <li><button class="astext" id="home-nav" onclick="index.php">Home</button></li>
-          <li><button class="astext" id="about-nav" onclick="index.php">About</button></li>
-          <li><button class="astext" id="services-nav" onclick="index.php">Services</button></li>
-          <li><button class="astext" id="prices-nav" onclick="index.php">Prices</button></li>
-          <li><button class="astext" id="contact-nav" onclick="index.php">Contact</button></li>
+          <li><a href="index.php" id="home-nav">Home</a></li>
+          <li><a href="index.php" id="about-nav">About</a></li>
+          <li><a href="index.php" id="services-nav">Services</a></li>
+          <li><a href="index.php" id="prices-nav">Prices</a></li>
+          <li><a href="index.php" id="contact-nav">Contact</a></li>
           <li><a href="myaccount.php">My Account</a></li>
           <li><button class="astext" onclick="on()">Booking</button></li>
           <li><a href="sign_in.php" style="color: #5B0606">Sign In</a></li>
@@ -180,8 +180,8 @@
         <input type="password" name="user-password" id="sign-in-password" required><br>
 
         <div id="register-reset-links">
-          <h3><a href="create_account.html">Don't have an account? Register now!</a></h3>
-          <h3><a href="passreset.html">Forgot your password?</a></h3>
+          <h3><a href="create_account.php">Don't have an account? Register now!</a></h3>
+          <h3><a href="passreset.php">Forgot your password?</a></h3>
         </div>
 
         <input type="submit" value="Sign In">
