@@ -18,7 +18,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/functions.js"></script>
-  <script src="js/passchange_val.js"></script>
+  <script src="js/create_account_val.js"></script>
   <!-- Page icon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
@@ -30,27 +30,27 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <!-- Booking form (overlay) -->
   <div id="overlay">
-    <div id="booking-form-main">
-      <div id="booking-form">
-        <form id="b-form">
+  	<div id="booking-form-main">
+  		<div id="booking-form">
+  			<form id="b-form" action="" onsubmit="return !!(valYearOfProdbook() & valForenamebook() & valSurnamebook() & valEmailbook() & valPhoneNumbook() & valAddressbook() & valAddress2book() & valCitybook() & valPostcodebook() & valDescriptionbook());">
           <div class="heading">
             <h3>Booking form</h3>
           </div>
 
           <div id="computer-type-s">
             <label for="computer-type" class="d-form-label">Computer type:</label><br>
-            <select name="computer-type" required>
+            <select name="computer-type" id="computer-type" required>
               <option></option>
-              <option value="PC">PC</option>
-              <option value="Laptop">Laptop/Notebook</option>
-              <option value="Macbook">Macbook</option>
-              <option value="iMac">iMac</option>
+              <option value="PC">Desktop PC/iMac</option>
+              <option value="Laptop">Laptop/Notebook/Macbook</option>
+              <!--<option value="Macbook">Macbook</option>
+              <option value="iMac">iMac</option>-->
             </select>
           </div>
 
           <div id="computer-details">
             <label for="make" class="d-form-label">Computer make:</label>
-            <select name="make" required>
+            <select name="make" id="comp-make" required>
               <option></option>
               <option value="HP">HP</option>
               <option value="Lenovo">Lenovo</option>
@@ -63,16 +63,16 @@
             </select><br>
 
             <label for="model" class="d-form-label">Computer model:</label>
-            <input type="text" name="model"><br>
+            <input type="text" name="model" id="comp-model"><br>
 
             <label for="year" class="d-form-label">Year of production:</label>
-            <input type="text" name="year">
+            <input type="text" name="year" id="year-prod">
           </div>
 
           <div id="service-details">
             <div class="label-item-rel">
               <label for="type-os" class="d-form-label">Type of service:</label>
-              <select name="type-os" required>
+              <select name="type-os" id="type-os" required>
                 <option></option>
                 <option value="OS install">OS install/re-install</option>
                 <option value="cleaning">Device cleaning</option>
@@ -86,7 +86,7 @@
 
             <div class="label-item-rel">
               <label for="devices-num" class="d-form-label">Number of devices:</label>
-              <select name="devices-num" required>
+              <select name="devices-num" id="devices-num" required>
                 <option></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -107,7 +107,7 @@
 
           <div id="date-select">
             <h4>SELECT THE DATE:</h4>
-            <input type="date" name="booking-date">
+            <input type="date" name="booking-date" id="booking-date">
           </div>
 
           <div id="personal-information">
@@ -115,74 +115,94 @@
               <h4>PERSONAL INFORMATION:</h4>
             </div>
             <div id="col-1">
-              <input type="text" name="forename" placeholder="Forename*"><br>
+              <input type="text" name="forename" id="booking-forename" placeholder="Forename*"><br>
 
-              <input type="text" name="surname" placeholder="Surname*"><br>
+              <input type="text" name="surname" id="booking-surname" placeholder="Surname*"><br>
 
-              <input type="email" name="email-address" placeholder="E-mail address*"><br>
+              <input type="email" name="email-address" id="booking-email" placeholder="E-mail address*"><br>
 
-              <input type="text" name="phone-num" placeholder="Phone Number*"><br>
+              <input type="text" name="phone-num" id="booking-phone-num" placeholder="Phone Number*"><br>
             </div>
 
             <div id="col-2">
-              <input type="text" name="address-line1" placeholder="Address"><br>
+              <input type="text" name="address-line1" id="booking-addl1" placeholder="Address"><br>
 
-              <input type="text" name="address-line2" placeholder="Address (line 2)"><br>
+              <input type="text" name="address-line2" id="booking-addl2" placeholder="Address (line 2)"><br>
 
-              <input type="text" name="city" placeholder="City"><br>
+              <input type="text" name="city" id="booking-city" placeholder="City"><br>
 
-              <input type="text" name="postcode" placeholder="Postcode" style="max-width: 15rem;"><br>
+              <input type="text" name="postcode" id="booking-postcode" placeholder="Postcode" style="max-width: 15rem;"><br>
             </div>
           </div>
 
           <div id="description">
             <h4>FAULT/PROBLEM/SERVICE DESCRIPTION:</h4>
-            <textarea name="service-description" maxlength="1000" rows="5" placeholder="Max. 1000 characters"></textarea>
+            <textarea name="service-description" id="service-description" maxlength="1000" rows="5" placeholder="Max. 1000 characters"></textarea>
           </div>
 
           <div id="form-submit">
             <input type="submit" value="Submit">
           </div>
-        </form>
-      </div>
+			  </form>
+		  </div>
       <div id="close-x" onclick="off()">
         <img src="images/close-cross2.png" />
       </div>
     </div>
   </div>
 
-  <div id="password-change-main">
-    <div class="nav-bar">
-      <div id="nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Prices</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="myaccount.html" style="color: #5B0606">My Account</a></li>
-          <li><button class="astext" onclick="on()">Booking</button></li>
-          <li><a href="sign_in.html">Sign In</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div id="password-change-form" class="container">
-      <div class="heading">
-        <h1>Change Password</h1>
-      </div>
-
-      <form id="pass-change-form" onsubmit="return !!(valCurrentPswrd() & valNewPswrd());">
-        <label for="current-password" class="p-form-label">Current Password:</label> <input type="password" name="current-password" id="pass-change-crntpass" required><br>
-
-        <label for="new-password" class="p-form-label">New Password:</label> <input type="password" name="new-password" id="pass-change-newpass" required><br>
-
-        <label for="confirm-password" class="p-form-label">Confirm Password:</label> <input type="password" id="pass-change-confirmpass" name="confirm-password" required><br>
-
-        <input type="submit" value="Confirm">
-      </form>
+  <div class="nav-bar">
+    <div id="nav">
+      <ul>
+        <li><button class="astext" id="home-nav" onclick="index.php">Home</button></li>
+        <li><button class="astext" id="about-nav" onclick="index.php">About</button></li>
+        <li><button class="astext" id="services-nav" onclick="index.php">Services</button></li>
+        <li><button class="astext" id="prices-nav" onclick="index.php">Prices</button></li>
+        <li><button class="astext" id="contact-nav" onclick="index.php">Contact</button></li>
+        <li><a href="myaccount.php">My Account</a></li>
+        <li><button class="astext" onclick="on()">Booking</button></li>
+        <li><a href="sign_in.php">Sign In</a></li>
+      </ul>
     </div>
   </div>
+
+  <div id="account-create-main" class="container">
+    <div class="heading">
+      <h1>Create Account</h1>
+    </div>
+
+    <div id="account-create-form">
+      <form id="account-create-f" onsubmit="return !!(valForenameAcc() & valSurnameAcc() & valEmailAcc() & valPasswords() & valPhoneNumAcc() & valAddressAcc() & valAddress2Acc() & valCityAcc() & valPostcodeAcc());">
+        <div id="required-data">
+          <label for="forename" class="d-form-label">Forename<span style="color: red;">*</span>:</label> <input type="text" name="forename" id="new-account-forename" required><br>
+
+          <label for="surname" class="d-form-label">Surname<span style="color: red;">*</span>:</label><input type="text" name="surname" id="new-account-surname" required><br>
+
+          <label for="email-address" class="d-form-label">E-mail address<span style="color: red;">*</span>:</label><input type="email" name="email-address" id="new-account-email" required><br>
+
+          <label for="u-password" class="d-form-label">Password<span style="color: red;">*</span>:</label><input type="password" name="u-password" id="new-account-password" required><br>
+
+          <label for="pass-confirm" class="d-form-label">Confirm password<span style="color: red;">*</span>:</label><input type="password" name="pass-confirm" id="new-account-passconf" required><br>
+        </div>
+
+        <h3>Additional Information</h3>
+
+        <div id="additional-data">
+          <label for="phone-num" class="d-form-label">Phone Number:</label><input type="text" name="phone-num" id="new-account-phonenum"><br>
+
+          <label for="address-line1" class="d-form-label">Address:</label><input type="text" name="address-line1" id="new-account-addl1"><br>
+
+          <label for="address-line2" class="d-form-label">Address (line 2):</label><input type="text" name="address-line2" id="new-account-addl2"><br>
+
+          <label for="city" class="d-form-label">City:</label><input type="text" name="city" id="new-account-city"><br>
+
+          <label for="postcode" class="d-form-label">Postcode:</label><input type="text" name="postcode" id="new-account-postcode" style="max-width: 15rem;"><br>
+
+          <input type="submit" value="Create your account">
+        </div>
+
+      </form>
+    </div>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

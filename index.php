@@ -159,13 +159,13 @@
       <div id="nav">
         <ul>
           <li><button class="astext" id="home-nav" onclick="index.php">Home</button></li>
-          <li><button class="astext" id="about-nav" onclick="on()">About</button></li>
-          <li><button class="astext" id="services-nav" onclick="on()">Services</button></li>
-          <li><button class="astext" id="prices-nav" onclick="on()">Prices</button></li>
-          <li><button class="astext" id="contact-nav" onclick="on()">Contact</button></li>
-          <li><a href="myaccount.html">My Account</a></li>
+          <li><button class="astext" id="about-nav" onclick="index.php">About</button></li>
+          <li><button class="astext" id="services-nav" onclick="index.php">Services</button></li>
+          <li><button class="astext" id="prices-nav" onclick="index.php">Prices</button></li>
+          <li><button class="astext" id="contact-nav" onclick="index.php">Contact</button></li>
+          <li><a href="myaccount.php">My Account</a></li>
           <li><button class="astext" onclick="on()">Booking</button></li>
-          <li><a href="sign_in.html">Sign In</a></li>
+          <li><a href="sign_in.php">Sign In</a></li>
         </ul>
       </div>
     </div>
