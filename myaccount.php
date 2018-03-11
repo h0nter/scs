@@ -195,7 +195,9 @@
     <div id="account-menu" class="container">
       <div id="menu-stripe">
         <div id="init-circle">
-          <h1>J</h1>
+          <?php
+            echo "<h1>".substr($_SESSION['first_name'],0,1)."</h1>";
+          ?>
         </div>
 
         <div id="menu-bars">
