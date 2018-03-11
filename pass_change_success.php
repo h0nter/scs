@@ -1,81 +1,13 @@
 <?php
+
   session_start();//Start user session for global variables
 
-  //If loggedIn flag doesn't exist (user isn't logged in)
-  if (!isset($_SESSION['loggedIn'])){
-    header('Location: sign_in.php');//Send user to the Sign In page
+  //If successReg flag doesn't exist in the session (user hasn't registered a new account)
+  if (!isset($_SESSION['pass_change_success'])){
+    header('Location: pass_change.php');//Send user to the Details Change page
     exit();//Exit this file
-  }
-
-  //Check if the form has been submited
-  if (isset($_POST['current-password'])){
-    //Successful validation flag
-    $successVal = true;
-
-    //Check if the current password is valid
-    $passC = $_POST['current-password'];
-    $regex = "/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+=?^_-].{8,}$/";
-
-    if(!preg_match($regex, $passC)){
-      $successVal = false;
-      $_SESSION['e_passwordC'] = "Incorrect password!";
-    }
-
-    //Check if the new passwords are valid
-    $pass1 = $_POST['new-password'];
-    $pass2 = $_POST['confirm-password'];
-    $regex = "/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+=?^_-].{8,}$/";
-
-    if (!preg_match($regex, $pass1)){
-      $successVal = false;
-      $_SESSION['e_password'] = "Password must have more than 8 characters, at least 1 capital letter and at least 1 number!";
-    }
-
-    if ($pass1 != $pass2){
-      $successVal = false;
-      $_SESSION['e_password'] = "Entered passwords aren't identical";
-    }
-
-    $pass_hash = password_hash($pass1, PASSWORD_DEFAULT);
-
-    require_once "connect.php";//Attach 'connect.php' file
-    mysqli_report(MYSQLI_REPORT_STRICT);//Instead of warnings, throw exceptions
-
-    try{
-      $connection = new mysqli($host, $db_user, $db_password, $db_name);//Establish a new database connection
-      //Check if the connection with database was successful
-      if($connection->connect_errno!=0){
-        throw new Exception(mysqli_connect_errno());//In case of connection error, throw an exception
-      }else{
-        $c_user_id = $_SESSION['user_id'];
-
-        $c_user_pass = $connection->query("SELECT password FROM users WHERE user_id='$c_user_id'");//Variable to store result of the SQL query which selects the user password from the db
-
-        if (!$c_user_pass){
-          throw new Exception($connection->error);
-        }
-
-        if(!password_verify($passC, $c_user_pass)){
-          $successVal = false;
-          $_SESSION['e_passwordC'] = "Incorrect password!";
-        }
-
-        if(successVal == true){
-          if($connection->query("UPDATE users SET password='$pass_hash' WHERE user_id='$c_user_id'")){
-            $_SESSION['pass_change_success'] = true;
-            header('Location: pass_change_success.php');
-          }else{
-            throw new Exception($connection->error);
-          }
-        }
-
-        $connection->close();
-      }
-    }
-    catch(Exception $e){
-      echo '<span style="color: red;">Server error! Sorry for the inconvinience, please try again at a different time.</span>';
-      //echo '<br />Developer info: '.$e;
-    }
+  }else{//If the successReg flag exists in the session
+    unset($_SESSION['pass_change_success']);
   }
 ?>
 
@@ -99,7 +31,6 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/functions.js"></script>
-  <script src="js/passchange_val.js"></script>
   <!-- Page icon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
@@ -111,9 +42,9 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <!-- Booking form (overlay) -->
   <div id="overlay">
-  	<div id="booking-form-main">
-  		<div id="booking-form">
-  			<form id="b-form" action="" onsubmit="return !!(valYearOfProdbook() & valForenamebook() & valSurnamebook() & valEmailbook() & valPhoneNumbook() & valAddressbook() & valAddress2book() & valCitybook() & valPostcodebook() & valDescriptionbook());">
+    <div id="booking-form-main">
+      <div id="booking-form">
+        <form id="b-form" action="" onsubmit="return !!(valYearOfProdbook() & valForenamebook() & valSurnamebook() & valEmailbook() & valPhoneNumbook() & valAddressbook() & valAddress2book() & valCitybook() & valPostcodebook() & valDescriptionbook());">
           <div class="heading">
             <h3>Booking form</h3>
           </div>
@@ -224,15 +155,15 @@
           <div id="form-submit">
             <input type="submit" value="Submit">
           </div>
-			  </form>
-		  </div>
+        </form>
+      </div>
       <div id="close-x" onclick="off()">
         <img src="images/close-cross2.png" />
       </div>
     </div>
   </div>
 
-  <div id="password-change-main">
+  <div id="sign-in-main">
     <div class="nav-bar">
       <div id="nav">
         <ul>
@@ -241,39 +172,19 @@
           <li><a href="index.php" id="services-nav">Services</a></li>
           <li><a href="index.php" id="prices-nav">Prices</a></li>
           <li><a href="index.php" id="contact-nav">Contact</a></li>
-          <li><a href="myaccount.php" style="color: #5B0606">My Account</a></li>
+          <li><a href="myaccount.php">My Account</a></li>
           <li><button class="astext" onclick="on()">Booking</button></li>
-          <li><a href="sign_in.php">Sign In</a></li>
+          <li><a href="sign_in.php" style="color: #5B0606">Sign In</a></li>
         </ul>
       </div>
     </div>
 
-    <div id="password-change-form" class="container">
+    <div id="sign-in-form" class="container">
       <div class="heading">
-        <h1>Change Password</h1>
+        <h1>Thank you!</h1>
+        <h3>Your password has been updated successfully</h3>
+        <a href="myaccount.php"><h3>You can now change it on 'My Account' page</h3></a>
       </div>
-
-      <form id="pass-change-form" method="post" onsubmit="return !!(valCurrentPswrd() & valNewPswrd());">
-        <label for="current-password" class="p-form-label">Current Password:</label> <input type="password" name="current-password" id="pass-change-crntpass" required><br>
-        <?php
-          if (isset($_SESSION['e_passwordC'])){
-            echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_passwordC'].'</div>';
-            unset($_SESSION['e_passwordC']);
-          }
-        ?>
-
-        <label for="new-password" class="p-form-label">New Password:</label> <input type="password" name="new-password" id="pass-change-newpass" required><br>
-        <?php
-          if (isset($_SESSION['e_password'])){
-            echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_password'].'</div>';
-            unset($_SESSION['e_password']);
-          }
-        ?>
-
-        <label for="confirm-password" class="p-form-label">Confirm Password:</label> <input type="password" id="pass-change-confirmpass" name="confirm-password" required><br>
-
-        <input type="submit" value="Confirm">
-      </form>
     </div>
   </div>
 
