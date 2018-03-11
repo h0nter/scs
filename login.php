@@ -21,9 +21,10 @@
     $email = $_POST['email-address'];
     $password = $_POST['user-password'];
 
-    $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";//SQL query variable to select user from db
+    $email = htmlentities($email, ENT_QUOTES, "UTF-8");
+    $password = htmlentities($password, ENT_QUOTES, "UTF-8");
 
-    if ($db_result = @$connection->query($sql)){//Variable to store result of the SQL query
+    if ($db_result = @$connection->query(sprintf("SELECT * FROM users WHERE email='%s' AND password='%s'", mysqli_real_escape_string($connection,$email), mysqli_real_escape_string($connection,$password)))){//Variable to store result of the SQL query which selects the user from the db
       $users_num = $db_result->num_rows;//Number of users found in the db
       if ($users_num > 0){//Check if any users were found in the db
         $_SESSION['loggedIn'] = true;//User is signed in
