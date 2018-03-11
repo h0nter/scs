@@ -1,3 +1,9 @@
+<?php
+
+  session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -171,7 +177,9 @@
 
         <div id="header-account" class="container">
           <div class="row" style="text-align: center;">
-            <h1>Hi Jim</h1>
+            <?php
+              echo "<h1>Hi ".$_SESSION['first_name']."</h1>";
+            ?>
             <h3>It's nice to see you again</h3>
           </div>
         </div>
@@ -185,15 +193,15 @@
 
         <div id="menu-bars">
           <div class="m-bar" style="background-image: url(images/Menu-bar1.png); width: 48.5rem;">
-            <h3 style="font-size: 4.3rem;"><a href="mybookings.html">My Bookings</a></h3>
+            <h3 style="font-size: 4.3rem;"><a href="mybookings.php">My Bookings</a></h3>
           </div>
 
           <div class="m-bar" style="background-image: url(images/Menu-bar2.png); width: 42.1rem;">
-            <h3 style="font-size: 4.2rem;"><a href="details_edit.html">Edit My Details</a></h3>
+            <h3 style="font-size: 4.2rem;"><a href="details_edit.php">Edit My Details</a></h3>
           </div>
 
           <div class="m-bar" style="background-image: url(images/Menu-bar3.png); width: 36.2rem;">
-            <h3 style="font-size: 3.6rem;"><a href="passchange.html">Change Password</a></h3>
+            <h3 style="font-size: 3.6rem;"><a href="passchange.php">Change Password</a></h3>
           </div>
         </div>
       </div>

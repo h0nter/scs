@@ -1,3 +1,9 @@
+<?php
+
+  session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -173,21 +179,69 @@
 
     <div id="details-edit-form">
       <form id="d-edit-form" onsubmit="return !!(valForenameDet() & valSurnameDet() & valEmailDet() & valPhoneNumDet() & valAddressDet() & valAddress2Det() & valCityDet() & valPostcodeDet());">
-        <label for="forename" class="d-form-label">Forename:</label> <input type="text" name="forename" id="details-forename" value="Jim"><br>
+        <label for="forename" class="d-form-label">Forename:</label> <input type="text" name="forename" id="details-forename"
+        <?php
+          if (isset($_SESSION['first_name'])){
+            echo 'value="'.$_SESSION['first_name'].'"';
+          }
+        ?>
+        ><br>
 
-        <label for="surname" class="d-form-label">Surname:</label><input type="text" name="surname" id="details-surname" value="Kovalsky"><br>
+        <label for="surname" class="d-form-label">Surname:</label><input type="text" name="surname" id="details-surname"
+        <?php
+          if (isset($_SESSION['last_name'])){
+            echo 'value="'.$_SESSION['last_name'].'"';
+          }
+        ?>
+        ><br>
 
-        <label for="email-address" class="d-form-label">E-mail address:</label><input type="email" name="email-address" id="details-email" value="jkovalsky@gmail.com"><br>
+        <label for="email-address" class="d-form-label">E-mail address:</label><input type="email" name="email-address" id="details-email"
+        <?php
+          if (isset($_SESSION['email'])){
+            echo 'value="'.$_SESSION['email'].'"';
+          }
+        ?>
+        ><br>
 
-        <label for="phone-num" class="d-form-label">Phone Number:</label><input type="text" name="phone-num" id="details-phone-num" value="07347875158"><br>
+        <label for="phone-num" class="d-form-label">Phone Number:</label><input type="text" name="phone-num" id="details-phone-num"
+        <?php
+          if (isset($_SESSION['phone_num'])){
+            echo 'value="'.$_SESSION['phone_num'].'"';
+          }
+        ?>
+        ><br>
 
-        <label for="address-line1" class="d-form-label">Address:</label><input type="text" name="address-line1" id="details-addressl1" value="22 London Road"><br>
+        <label for="address-line1" class="d-form-label">Address:</label><input type="text" name="address-line1" id="details-addressl1"
+        <?php
+          if (isset($_SESSION['address'])){
+            echo 'value="'.$_SESSION['address'].'"';
+          }
+        ?>
+        ><br>
 
-        <label for="address-line2" class="d-form-label">Address (line 2):</label><input type="text" id="details-addressl2" name="address-line2" value=""><br>
+        <label for="address-line2" class="d-form-label">Address (line 2):</label><input type="text" id="details-addressl2" name="address-line2"
+        <?php
+          if (isset($_SESSION['address2'])){
+            echo 'value="'.$_SESSION['address2'].'"';
+          }
+        ?>
+        ><br>
 
-        <label for="city" class="d-form-label">City:</label><input type="text" name="city" id="details-city" value="Brighton"><br>
+        <label for="city" class="d-form-label">City:</label><input type="text" name="city" id="details-city"
+        <?php
+          if (isset($_SESSION['city'])){
+            echo 'value="'.$_SESSION['city'].'"';
+          }
+        ?>
+        ><br>
 
-        <label for="postcode" class="d-form-label">Postcode:</label><input type="text" name="postcode" id="details-postcode" value="BN1 4JE"><br>
+        <label for="postcode" class="d-form-label">Postcode:</label><input type="text" name="postcode" id="details-postcode"
+        <?php
+          if (isset($_SESSION['postcode'])){
+            echo 'value="'.$_SESSION['postcode'].'"';
+          }
+        ?>
+        ><br>
 
         <input type="submit" value="Save">
       </form>

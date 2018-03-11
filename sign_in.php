@@ -172,7 +172,7 @@
         <h1>Sign In</h1>
       </div>
 
-      <form id="sign-in-f" onsubmit="return !!(valEmailLog() & valPasswordLog());">
+      <form id="sign-in-f" action="login.php" method="post" onsubmit="return !!(valEmailLog() & valPasswordLog());">
         <label for="email-address" class="s-form-label">Email address:</label><br>
         <input type="email" name="email-address" id="sign-in-email" required><br>
 
