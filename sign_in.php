@@ -1,3 +1,14 @@
+<?php
+
+  session_start();//Start user session for global variables
+
+  //If loggedIn flag exists in the session and is true (user is signed in)
+  if ((isset($_SESSION['loggedIn'])) && ($_SESSION['loggedIn'] == true)){
+    header('Location: myaccount.php');//Send user to their account page
+    exit();//Exit this file
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -180,6 +191,14 @@
         <input type="password" name="user-password" id="sign-in-password" required><br>
 
         <div id="register-reset-links">
+          <h3>
+            <?php
+              if (isset($_SESSION['loginError'])){//If there was a log-in error
+                echo $_SESSION['loginError'];//Show log-in error message
+              }
+            ?>
+          </h3>
+
           <h3><a href="create_account.php">Don't have an account? Register now!</a></h3>
           <h3><a href="passreset.php">Forgot your password?</a></h3>
         </div>

@@ -1,6 +1,12 @@
 <?php
 
-  session_start();
+  session_start();//Start user session for global variables
+
+  //If loggedIn flag doesn't exist (user isn't logged in)
+  if (!isset($_SESSION['loggedIn'])){
+    header('Location: sign_in.php');//Send user to the Sign In page
+    exit();//Exit this file
+  }
 
 ?>
 
@@ -181,6 +187,7 @@
               echo "<h1>Hi ".$_SESSION['first_name']."</h1>";
             ?>
             <h3>It's nice to see you again</h3>
+            <h3><a href="logout.php">Log out</a></h3><!--Log out button-->
           </div>
         </div>
     </div>

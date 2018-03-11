@@ -2,6 +2,12 @@
 
   session_start();//Start user session for global variables
 
+  //If email and password don't exist in the POST table (user didn't complete the Sign In form)
+  if ((!isset($_POST['email-address'])) || (!isset($_POST['user-password']))){
+    header('Location: sign_in.php');//Send user to the Sign In page
+    exit();//Exit this file
+  }
+
   require_once "connect.php";//Attach 'connect.php' file
 
   //Establish a new database connection
@@ -20,6 +26,8 @@
     if ($db_result = @$connection->query($sql)){//Variable to store result of the SQL query
       $users_num = $db_result->num_rows;//Number of users found in the db
       if ($users_num > 0){//Check if any users were found in the db
+        $_SESSION['loggedIn'] = true;//User is signed in
+
         $record = $db_result->fetch_assoc();//Store user record data in an associative table
 
         //Assign values from the record table to global variables
@@ -33,10 +41,12 @@
         $_SESSION['city'] = $record['city'];
         $_SESSION['postcode'] = $record['postcode'];
 
+        unset($_SESSION['loginError']);//Remove log-in error variable
         $db_result->free_result();//Free up the space in memory 'locked' by the SQL query result variable
         header('Location: myaccount.php');//Login is successful, send user to their account page
       }else{//If no users were found in the db
-        
+        $_SESSION['loginError'] = '<span style="color: red">Incorrect email or password!</span>';//Variable with message in case of an error
+        header('Location: sign_in.php');//Send user back to the Sign In page
       }
     }
 
