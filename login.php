@@ -21,7 +21,7 @@
       $email = $_POST['email-address'];
       $password = $_POST['user-password'];
 
-      //Sanitize email and password (replace any '' and "" with HTML entities)
+      //Sanitize email (replace any '' and "" with HTML entities)
       $email = htmlentities($email, ENT_QUOTES, "UTF-8");
 
       $db_result = $connection->query(sprintf("SELECT * FROM users WHERE email='%s'", mysqli_real_escape_string($connection,$email)));//Variable to store result of the SQL query which selects the user from the db
