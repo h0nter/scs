@@ -162,7 +162,7 @@
     //Check if the service description is valid
     $service_note = $_POST['service-description'];
 
-    if ($service_description == ""){
+    if ($service_note == ""){
       $successVal = false;
       $_SESSION['e_serviceds'] = "This field cannot be empty";
     }
@@ -194,6 +194,8 @@
         $comp_model = mysqli_real_escape_string($connection, $comp_model);
 
         $service_note = mysqli_real_escape_string($connection, $service_note);
+
+        $user_id = $_SESSION['user_id'];
 
         if($successVal == true){
           //Validation IS successful, add user to the db
@@ -251,226 +253,225 @@
   <!-- Booking form (overlay) -->
   <div id="overlay">
   	<div id="booking-form-main">
-  		<div id="booking-form">
-  			<form id="b-form" method="post" onsubmit="return !!(valYearOfProdbook() & valForenamebook() & valSurnamebook() & valEmailbook() & valPhoneNumbook() & valAddressbook() & valAddress2book() & valCitybook() & valPostcodebook() & valDescriptionbook());">
-          <div class="heading">
-            <h3>Booking form</h3>
-          </div>
+      <?php
+      if ($_SESSION['loggedIn'] == true){
+echo <<<EOL
+<div id="booking-form">
+  <form id="b-form" method="post" onsubmit="return !!(valYearOfProdbook() & valForenamebook() & valSurnamebook() & valEmailbook() & valPhoneNumbook() & valAddressbook() & valAddress2book() & valCitybook() & valPostcodebook() & valDescriptionbook());">
+    <div class="heading">
+      <h3>Booking form</h3>
+    </div>
 
-          <div id="computer-type-s">
-            <label for="computer-type" class="d-form-label">Computer type:</label><br>
-            <select name="computer-type" id="computer-type" required>
-              <option></option>
-              <option value="PC/iMac">Desktop PC/iMac</option>
-              <option value="Laptop/Macbook">Laptop/Notebook/Macbook</option>
-              <!--<option value="Macbook">Macbook</option>
-              <option value="iMac">iMac</option>-->
-            </select>
+    <div id="computer-type-s">
+      <label for="computer-type" class="d-form-label">Computer type:</label><br>
+      <select name="computer-type" id="computer-type" required>
+        <option></option>
+        <option value="PC/iMac">Desktop PC/iMac</option>
+        <option value="Laptop/Macbook">Laptop/Notebook/Macbook</option>
+        <!--<option value="Macbook">Macbook</option>
+        <option value="iMac">iMac</option>-->
+      </select>
+EOL;
+        if (isset($_SESSION['e_comptype'])){
+          echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_comptype'].'</div>';
+          unset($_SESSION['e_comptype']);
+        }
+echo <<<EOL
+    </div>
 
-            <?php
-              /*if (isset($_SESSION['e_comptype'])){
-                echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_comptype'].'</div>';
-                unset($_SESSION['e_comptype']);
-              }*/
-            ?>
-          </div>
+    <div id="computer-details">
+      <label for="make" class="d-form-label">Computer make:</label>
+      <select name="make" id="comp-make" required>
+        <option></option>
+        <option value="HP">HP</option>
+        <option value="Lenovo">Lenovo</option>
+        <option value="Dell">Dell</option>
+        <option value="Asus">Asus</option>
+        <option value="Acer">Acer</option>
+        <option value="Apple">Apple</option>
+        <option value="Alienware">Alienware</option>
+        <option value="Other">Other</option>
+      </select><br>
+EOL;
+        if (isset($_SESSION['e_make'])){
+          echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_make'].'</div>';
+          unset($_SESSION['e_make']);
+        }
+echo <<<EOL
+      <label for="model" class="d-form-label">Computer model:</label>
+      <input type="text" name="model" id="comp-model"><br>
+EOL;
+        if (isset($_SESSION['e_model'])){
+          echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_model'].'</div>';
+          unset($_SESSION['e_model']);
+        }
+echo <<<EOL
+      <label for="year" class="d-form-label">Year of production:</label>
+      <input type="text" name="year" id="year-prod">
+EOL;
+        if (isset($_SESSION['e_year'])){
+          echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_year'].'</div>';
+          unset($_SESSION['e_year']);
+        }
+echo <<<EOL
+    </div>
 
-          <div id="computer-details">
-            <label for="make" class="d-form-label">Computer make:</label>
-            <select name="make" id="comp-make" required>
-              <option></option>
-              <option value="HP">HP</option>
-              <option value="Lenovo">Lenovo</option>
-              <option value="Dell">Dell</option>
-              <option value="Asus">Asus</option>
-              <option value="Acer">Acer</option>
-              <option value="Apple">Apple</option>
-              <option value="Alienware">Alienware</option>
-              <option value="Other">Other</option>
-            </select><br>
+    <div id="service-details">
+      <div class="label-item-rel">
+        <label for="type-os" class="d-form-label">Type of service:</label>
+        <select name="type-os" id="type-os" required>
+          <option></option>
+          <option value="os-install">OS install/re-install</option>
+          <option value="cleaning">Device cleaning</option>
+          <option value="hw-update">Hardware update</option>
+          <option value="pc-build">Building a new PC</option>
+          <option value="screen-replacement">Screen replacment</option>
+          <option value="hard-drive-recovery">Hard-drive data recovery</option>
+          <option value="other">Other</option>
+        </select><br>
+EOL;
+          if (isset($_SESSION['e_service'])){
+            echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_service'].'</div>';
+            unset($_SESSION['e_service']);
+          }
+echo <<<EOL
+      </div>
 
-            <?php
-              /*if (isset($_SESSION['e_make'])){
-                echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_make'].'</div>';
-                unset($_SESSION['e_make']);
-              }*/
-            ?>
+      <div class="label-item-rel">
+        <label for="devices-num" class="d-form-label">Number of devices:</label>
+        <select name="devices-num" id="devices-num" required>
+          <option></option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="more">More</option>
+        </select><br>
+EOL;
+          if (isset($_SESSION['e_dnum'])){
+            echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_dnum'].'</div>';
+            unset($_SESSION['e_dnum']);
+          }
+echo <<<EOL
+      </div>
+    </div>
 
-            <label for="model" class="d-form-label">Computer model:</label>
-            <input type="text" name="model" id="comp-model"><br>
-            <?php
-              /*if (isset($_SESSION['e_model'])){
-                echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_model'].'</div>';
-                unset($_SESSION['e_model']);
-              }*/
-            ?>
+    <div id="delivery-method">
+      <h4>DELIVERY METHOD:</h4>
+      <input type="radio" name="d-method" value="in-person"> In-person<br>
 
-            <label for="year" class="d-form-label">Year of production:</label>
-            <input type="text" name="year" id="year-prod">
-            <?php
-              /*if (isset($_SESSION['e_year'])){
-                echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_year'].'</div>';
-                unset($_SESSION['e_year']);
-              }*/
-            ?>
-          </div>
+      <input type="radio" name="d-method" value="collect-delivery"> Collect & Delivery (extra cost)<br>
+EOL;
+        if (isset($_SESSION['e_dmethod'])){
+          echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_dmethod'].'</div>';
+          unset($_SESSION['e_dmethod']);
+        }
+echo <<<EOL
+    </div>
 
-          <div id="service-details">
-            <div class="label-item-rel">
-              <label for="type-os" class="d-form-label">Type of service:</label>
-              <select name="type-os" id="type-os" required>
-                <option></option>
-                <option value="os-install">OS install/re-install</option>
-                <option value="cleaning">Device cleaning</option>
-                <option value="hw-update">Hardware update</option>
-                <option value="pc-build">Building a new PC</option>
-                <option value="screen-replacement">Screen replacment</option>
-                <option value="hard-drive-recovery">Hard-drive data recovery</option>
-                <option value="other">Other</option>
-              </select><br>
-              <?php
-                /*if (isset($_SESSION['e_service'])){
-                  echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_service'].'</div>';
-                  unset($_SESSION['e_service']);
-                }*/
-              ?>
-            </div>
+    <div id="date-select">
+      <h4>SELECT THE DATE:</h4>
+      <input type="date" name="booking-date" id="booking-date">
+EOL;
+        if (isset($_SESSION['e_date'])){
+          echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_date'].'</div>';
+          unset($_SESSION['e_date']);
+        }
+echo <<<EOL
+    </div>
 
-            <div class="label-item-rel">
-              <label for="devices-num" class="d-form-label">Number of devices:</label>
-              <select name="devices-num" id="devices-num" required>
-                <option></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="more">More</option>
-              </select><br>
-              <?php
-                /*if (isset($_SESSION['e_dnum'])){
-                  echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_dnum'].'</div>';
-                  unset($_SESSION['e_dnum']);
-                }*/
-              ?>
-            </div>
-          </div>
+    <div id="personal-information">
+      <div style="grid-column: 1/3; grid-row: 1;">
+        <h4>PERSONAL INFORMATION:</h4>
+      </div>
+      <div id="col-1">
+        <input type="text" name="b-forename" id="booking-forename" placeholder="Forename*"><br>
+EOL;
+          if (isset($_SESSION['e_bforename'])){
+            echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bforename'].'</div>';
+            unset($_SESSION['e_bforename']);
+          }
+echo <<<EOL
+        <input type="text" name="b-surname" id="booking-surname" placeholder="Surname*"><br>
+EOL;
+          if (isset($_SESSION['e_bsurname'])){
+            echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bsurname'].'</div>';
+            unset($_SESSION['e_bsurname']);
+          }
+echo <<<EOL
+        <input type="email" name="b-email-address" id="booking-email" placeholder="E-mail address*"><br>
+EOL;
+          if (isset($_SESSION['e_bemail'])){
+            echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bemail'].'</div>';
+            unset($_SESSION['e_bemail']);
+          }
+echo <<<EOL
+        <input type="text" name="b-phone-num" id="booking-phone-num" placeholder="Phone Number*"><br>
+EOL;
+          if (isset($_SESSION['e_bphonenum'])){
+            echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bphonenum'].'</div>';
+            unset($_SESSION['e_bphonenum']);
+          }
+echo <<<EOL
+      </div>
 
-          <div id="delivery-method">
-            <h4>DELIVERY METHOD:</h4>
-            <input type="radio" name="d-method" value="in-person"> In-person<br>
+      <div id="col-2">
+        <input type="text" name="b-address-line1" id="booking-addl1" placeholder="Address"><br>
+EOL;
+          if (isset($_SESSION['e_baddress'])){
+            echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_baddress'].'</div>';
+            unset($_SESSION['e_baddress']);
+          }
+echo <<<EOL
+        <input type="text" name="b-address-line2" id="booking-addl2" placeholder="Address (line 2)"><br>
+EOL;
+          if (isset($_SESSION['e_baddress'])){
+            echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_baddress'].'</div>';
+            unset($_SESSION['e_baddress']);
+          }
+echo <<<EOL
+        <input type="text" name="b-city" id="booking-city" placeholder="City"><br>
+EOL;
+          if (isset($_SESSION['e_bcity'])){
+            echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bcity'].'</div>';
+            unset($_SESSION['e_bcity']);
+          }
+echo <<<EOL
+        <input type="text" name="b-postcode" id="booking-postcode" placeholder="Postcode" style="max-width: 15rem;"><br>
+      </div>
+EOL;
+        if (isset($_SESSION['e_bpostcode'])){
+          echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bpostcode'].'</div>';
+          unset($_SESSION['e_bpostcode']);
+        }
+echo <<<EOL
+    </div>
 
-            <input type="radio" name="d-method" value="collect-delivery"> Collect & Delivery (extra cost)<br>
+    <div id="description">
+      <h4>FAULT/PROBLEM/SERVICE DESCRIPTION:</h4>
+      <textarea name="service-description" id="service-description" maxlength="1000" rows="5" placeholder="Max. 1000 characters"></textarea>
+EOL;
+        if (isset($_SESSION['e_serviceds'])){
+          echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_serviceds'].'</div>';
+          unset($_SESSION['e_serviceds']);
+        }
+echo <<<EOL
+    </div>
 
-            <?php
-              /*if (isset($_SESSION['e_dmethod'])){
-                echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_dmethod'].'</div>';
-                unset($_SESSION['e_dmethod']);
-              }*/
-            ?>
-          </div>
+    <div id="form-submit">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+</div>
+EOL;
+}else if (isset($_POST['bOpen'])){
+          header('Location: sign_in.php');
+          unset($_POST['bOpen']);
+          exit();
+        }
+      ?>
 
-          <div id="date-select">
-            <h4>SELECT THE DATE:</h4>
-            <input type="date" name="booking-date" id="booking-date">
-
-            <?php
-              /*if (isset($_SESSION['e_date'])){
-                echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_date'].'</div>';
-                unset($_SESSION['e_date']);
-              }*/
-            ?>
-          </div>
-
-          <div id="personal-information">
-            <div style="grid-column: 1/3; grid-row: 1;">
-              <h4>PERSONAL INFORMATION:</h4>
-            </div>
-            <div id="col-1">
-              <input type="text" name="b-forename" id="booking-forename" placeholder="Forename*"><br>
-              <?php
-                /*if (isset($_SESSION['e_bforename'])){
-                  echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bforename'].'</div>';
-                  unset($_SESSION['e_bforename']);
-                }*/
-              ?>
-
-              <input type="text" name="b-surname" id="booking-surname" placeholder="Surname*"><br>
-              <?php
-                /*if (isset($_SESSION['e_bsurname'])){
-                  echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bsurname'].'</div>';
-                  unset($_SESSION['e_bsurname']);
-                }*/
-              ?>
-
-              <input type="email" name="b-email-address" id="booking-email" placeholder="E-mail address*"><br>
-              <?php
-                /*if (isset($_SESSION['e_bemail'])){
-                  echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bemail'].'</div>';
-                  unset($_SESSION['e_bemail']);
-                }*/
-              ?>
-
-              <input type="text" name="b-phone-num" id="booking-phone-num" placeholder="Phone Number*"><br>
-              <?php
-                /*if (isset($_SESSION['e_bphonenum'])){
-                  echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bphonenum'].'</div>';
-                  unset($_SESSION['e_bphonenum']);
-                }*/
-              ?>
-            </div>
-
-            <div id="col-2">
-              <input type="text" name="b-address-line1" id="booking-addl1" placeholder="Address"><br>
-              <?php
-                /*if (isset($_SESSION['e_baddress'])){
-                  echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_baddress'].'</div>';
-                  unset($_SESSION['e_baddress']);
-                }*/
-              ?>
-
-              <input type="text" name="b-address-line2" id="booking-addl2" placeholder="Address (line 2)"><br>
-              <?php
-                /*if (isset($_SESSION['e_baddress'])){
-                  echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_baddress'].'</div>';
-                  unset($_SESSION['e_baddress']);
-                }*/
-              ?>
-
-              <input type="text" name="b-city" id="booking-city" placeholder="City"><br>
-              <?php
-                /*if (isset($_SESSION['e_bcity'])){
-                  echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bcity'].'</div>';
-                  unset($_SESSION['e_bcity']);
-                }*/
-              ?>
-
-              <input type="text" name="b-postcode" id="booking-postcode" placeholder="Postcode" style="max-width: 15rem;"><br>
-            </div>
-            <?php
-              /*if (isset($_SESSION['e_bpostcode'])){
-                echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bpostcode'].'</div>';
-                unset($_SESSION['e_bpostcode']);
-              }*/
-            ?>
-          </div>
-
-          <div id="description">
-            <h4>FAULT/PROBLEM/SERVICE DESCRIPTION:</h4>
-            <textarea name="service-description" id="service-description" maxlength="1000" rows="5" placeholder="Max. 1000 characters"></textarea>
-            <?php
-              /*if (isset($_SESSION['e_serviceds'])){
-                echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_serviceds'].'</div>';
-                unset($_SESSION['e_serviceds']);
-              }*/
-            ?>
-          </div>
-
-          <div id="form-submit">
-            <input type="submit" value="Submit">
-          </div>
-			  </form>
-		  </div>
       <div id="close-x" onclick="off()">
         <img src="images/close-cross2.png" />
       </div>

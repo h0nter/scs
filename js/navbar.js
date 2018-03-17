@@ -4,7 +4,7 @@ $(window).scroll(function(){
 
   console.log(wScroll);
 
-  if (wScroll < $(window).height() - 400) {
+  if (wScroll < $(window).height() - 300) {
     $('#home-nav').css({'color': '#5B0606'});
   }else{
     $('#home-nav').css({'color': 'white'});

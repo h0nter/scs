@@ -11,7 +11,17 @@ $(window).scroll(function(){
 /*Open and close the booking form
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function on() {
-    document.getElementById("overlay").style.display = "flex"; //open booking form
+    $.post("index.php",{bOpen: true});
+    document.getElementById("overlay").style.display = "flex";
+
+    /*$.ajax({
+      type: "POST",
+      url: "index.php",
+      data: {bOpen: true}
+    }).done(function(html){
+    }).fail(function(html){
+
+    });*/
 }
 
 function off() {
