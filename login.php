@@ -32,7 +32,7 @@
 
       $users_num = $db_result->num_rows;//Number of users found in the db
       if ($users_num > 0){//Check if any users were found in the db
-        $record = $db_result->fetch_assoc();//Store user record data in an associative table
+        $record = $db_result->fetch_assoc();//Store user record data in an associative array
 
         if(password_verify($password, $record['password'])){
           $_SESSION['loggedIn'] = true;//User is signed in

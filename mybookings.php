@@ -1,3 +1,74 @@
+<?php
+
+  session_start();
+
+  if(!isset($_SESSION['loggedIn'])){
+    header('Location: sign_in.php');
+    exit();
+  }
+
+  require_once "connect.php";//Attach 'connect.php' file
+  mysqli_report(MYSQLI_REPORT_STRICT);//Instead of warnings, throw exceptions
+
+  try{
+    $connection = new mysqli($host, $db_user, $db_password, $db_name);//Establish a new database connection
+    //Check if the connection with database was successful
+    if($connection->connect_errno!=0){
+      throw new Exception(mysqli_connect_errno());//In case of connection error, throw an exception
+    }else{
+      $user_id = $_SESSION['user_id'];
+
+      $db_result = $connection->query("SELECT * FROM bookings WHERE user_id='$user_id'");
+
+      if (!db_result){
+        throw new Exception($connection->error);
+      }
+
+      $_SESSION['bookings_num'] = $db_result->num_rows;
+
+      if ($_SESSION['bookings_num'] > 0){
+
+        if(!$connection->query("CREATE TABLE IF NOT EXISTS userbookings LIKE bookings")){
+          throw new Exception($connection->error);
+        }
+
+        if ($connection->query("INSERT INTO userbookings SELECT * FROM bookings WHERE user_id='$user_id'")){
+          throw new Exception($connection->error);
+        }
+
+        if (!$connection->query("ALTER TABLE userbookings DROP PRIMARY KEY")){
+          throw new Exception($connection->error);
+        }
+
+        if (!$connection->query("ALTER TABLE userbookings ADD id INT NOT NULL AUTO_INCREMENT UNIQUE FIRST")){
+          throw new Exception($connection->error);
+        }
+
+        for ($i = 0; $i < $_SESSION['bookings_num']; $i++){
+          $userbookings = $connection->query("SELECT * FROM userbookings WHERE id='$i'");
+
+          $booking_records[$i] = $userbookings->fetch_assoc();
+        }
+
+        $_SESSION['user_bookings'] = $booking_records;
+
+        /*if(!connection->query("DROP TABLE userbookings")){
+          throw new Exception($connection->error);
+        }*/
+      }else{
+        $_SESSION['no_bookings'] = "You haven't made any bookings yet";
+      }
+
+      $connection->close();
+    }
+  }
+  catch(Exception $e){
+    echo '<span style="color: red;">Server error! Sorry for the inconvinience, please try again at a different time.</span>';
+    echo '<br />Developer info: '.$e;
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -171,12 +242,26 @@
     </div>
 
     <div id="booking-dat-section">
-      <div id="calendar-view">
+      <!--<div id="calendar-view">
         <h3>Calendar view</h3>
-      </div>
+      </div>-->
 
       <div id="list-view">
-        <h3>List view</h3>
+        <ul>
+          <li>List view</li>
+          <li>List view</li>
+          <li>List view</li>
+          <li>List view</li>
+          <?php
+
+            $user_bookings = $_SESSION['user_bookings'];
+            $bookings_num = $_SESSION['bookings_num'];
+            for ($i = 0; $i < $bookings_num; $i++){
+              echo '<li>'.$user_bookings[$i]['date'].'</li>';
+            }
+
+          ?>
+        </ul>
       </div>
 
       <div id="booking-details">
@@ -188,3 +273,5 @@
       </div>
     </div>
   </div>
+</body>
+</html>
