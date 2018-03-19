@@ -28,11 +28,19 @@
 
       if ($_SESSION['bookings_num'] > 0){
 
-        if(!$connection->query("CREATE TABLE IF NOT EXISTS userbookings LIKE bookings")){
+        if(!$connection->query("CREATE TEMPORARY TABLE userbookings LIKE bookings")){
           throw new Exception($connection->error);
         }
 
-        if ($connection->query("INSERT INTO userbookings SELECT * FROM bookings WHERE user_id='$user_id'")){
+        if(!$connection->query("TRUNCATE TABLE userbookings")){
+          throw new Exception($connection->error);
+        }
+
+        if (!$connection->query("INSERT INTO userbookings SELECT * FROM bookings WHERE user_id='$user_id'")){
+          throw new Exception($connection->error);
+        }
+
+        if (!$connection->query("ALTER TABLE userbookings MODIFY booking_id INT NOT NULL")){
           throw new Exception($connection->error);
         }
 
@@ -44,17 +52,13 @@
           throw new Exception($connection->error);
         }
 
-        for ($i = 0; $i < $_SESSION['bookings_num']; $i++){
+        for ($i = 1; $i <= $_SESSION['bookings_num']; $i++){
           $userbookings = $connection->query("SELECT * FROM userbookings WHERE id='$i'");
 
           $booking_records[$i] = $userbookings->fetch_assoc();
         }
 
         $_SESSION['user_bookings'] = $booking_records;
-
-        /*if(!connection->query("DROP TABLE userbookings")){
-          throw new Exception($connection->error);
-        }*/
       }else{
         $_SESSION['no_bookings'] = "You haven't made any bookings yet";
       }
@@ -89,6 +93,24 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/functions.js"></script>
+  <script>
+    $(document).ready(function(){
+      $(".mb").click(function(){
+        window.but_id = $(this).attr('mbbutton');
+        $("#booking-details").load("bd_col.php", {butID: window.but_id});
+      });
+
+      $("#b-cancel").click(function(){
+        if (window.but_id !== 'undefined'){
+          $.post("booking_cancel.php", {butID: window.but_id}, function(data, status){
+            $("#test").html(data);
+            alert(status);
+            location.reload();
+          });
+        }
+      });
+    });
+  </script>
   <!-- Page icon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
@@ -248,28 +270,52 @@
 
       <div id="list-view">
         <ul>
-          <li>List view</li>
-          <li>List view</li>
-          <li>List view</li>
-          <li>List view</li>
           <?php
 
             $user_bookings = $_SESSION['user_bookings'];
             $bookings_num = $_SESSION['bookings_num'];
-            for ($i = 0; $i < $bookings_num; $i++){
-              echo '<li>'.$user_bookings[$i]['date'].'</li>';
-            }
+            for ($i = 1; $i <= $bookings_num; $i++){
+              if ($i % 2 == 0){
+                $bg_color = '#C4C5C7';
+              }else{
+                $bg_color = '#E1E3E5';;
+              }
 
+              echo '<button id="mb-'.$i.'" class="no-style mb" mbbutton="'.$i.'"><li style="background-color: '.$bg_color.'">'.$user_bookings[$i]['comp_make'].' | '.$user_bookings[$i]['comp_model'].', '.$user_bookings[$i]['yop'].' | '.$user_bookings[$i]['type_os'].' | '.$user_bookings[$i]['devices_num'].' unit(s) | '.$user_bookings[$i]['date'].'</li></button>';
+            }
           ?>
         </ul>
       </div>
 
       <div id="booking-details">
-        <h3>Booking details</h3>
+        <div id="b-details-heading">
+          <h3>Booking details</h3>
+        </div>
+
+        <div id="bd-col1">
+          <h4>Device:</h4>
+          <h5 id="d-type">Type:</h5>
+          <h5 id="d-make">Make:</h5>
+          <h5 id="d-model">Model:</h5>
+          <h5 id="d-yop">YOP:</h5>
+          <h5 id="d-num">Quantity:</h5>
+        </div>
+
+        <div id="bd-col2">
+          <h4>Service:</h4>
+          <h5>Type:</h5>
+          <h5>Delivery:</h5>
+          <h5>Date:</h5>
+          <h5>Description:</h5>
+        </div>
       </div>
 
       <div id="cancel-booking-button">
-        <h3>Cancel booking</h3>
+        <button id="b-cancel">Cancel booking</button>
+      </div>
+
+      <div id="test">
+
       </div>
     </div>
   </div>
