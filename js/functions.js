@@ -11,17 +11,7 @@ $(window).scroll(function(){
 /*Open and close the booking form
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function on() {
-    $.post("index.php",{bOpen: true});
     document.getElementById("overlay").style.display = "flex";
-
-    /*$.ajax({
-      type: "POST",
-      url: "index.php",
-      data: {bOpen: true}
-    }).done(function(html){
-    }).fail(function(html){
-
-    });*/
 }
 
 function off() {

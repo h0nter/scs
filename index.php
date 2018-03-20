@@ -237,9 +237,26 @@
   <!-- JavaScript
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="js/navbar.js"></script>
   <script type="text/javascript" src="js/functions.js"></script>
   <script type="text/javascript" src="js/booking_form_val.js"></script>
-  <script type="text/javascript" src="js/navbar.js"></script>
+  <script>
+  $(document).ready(function(){
+    $("#booking-open").click(function(){
+        <?php
+          if (isset($_SESSION['loggedIn'])){
+            echo 'var logged_in = '.$_SESSION['loggedIn'].';';
+          }else{
+            echo 'var logged_in = false;';
+          }
+        ?>
+
+        if (logged_in == false){
+          window.location.replace("sign_in.php");
+        }
+    });
+  });
+  </script>
 
   <!-- Page icon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -256,7 +273,7 @@
       <?php
       if ($_SESSION['loggedIn'] == true){
 echo <<<EOL
-<div id="booking-form">
+  <div id="booking-form">
   <form id="b-form" method="post" onsubmit="return !!(valYearOfProdbook() & valForenamebook() & valSurnamebook() & valEmailbook() & valPhoneNumbook() & valAddressbook() & valAddress2book() & valCitybook() & valPostcodebook() & valDescriptionbook());">
     <div class="heading">
       <h3>Booking form</h3>
@@ -465,10 +482,6 @@ echo <<<EOL
   </form>
 </div>
 EOL;
-}else if (isset($_POST['bOpen'])){
-          header('Location: sign_in.php');
-          unset($_POST['bOpen']);
-          exit();
         }
       ?>
 
@@ -489,7 +502,7 @@ EOL;
           <li><a href="index.php" id="prices-nav">Prices</a></li>
           <li><a href="index.php" id="contact-nav">Contact</a></li>
           <li><a href="myaccount.php">My Account</a></li>
-          <li><button class="astext" onclick="on()">Booking</button></li>
+          <li><button id="booking-open" class="astext" onclick="on()">Booking</button></li>
           <li><a href="sign_in.php">Sign In</a></li>
         </ul>
       </div>
