@@ -1,83 +1,13 @@
 <?php
 
-  session_start();
+  session_start();//Start user session for global variables
 
-  function randomPassword() {
-    $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
-    $pass = array(); //remember to declare $pass as an array
-    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
-    for ($i = 0; $i < 8; $i++) {
-        $n = rand(0, $alphaLength);
-        $pass[] = $alphabet[$n];
-    }
-    return implode($pass); //turn the array into a string
-  }
-
-  //Check if password reset form has been submitted
-  if (isset($_POST['r-email-address'])){
-    //Successful validation flag
-    $successVal = true;
-
-    //Check if email address is valid
-    $email = $_POST['r-email-address'];//Store user email input in variable
-    $emailS = filter_var($email, FILTER_SANITIZE_EMAIL);//Sanitize email
-
-    //Validate sanitized email and compare it to the original user input
-    if ((filter_var($emailS, FILTER_VALIDATE_EMAIL) == false) || ($emailS != $email)){
-      $successVal = false;
-      $_SESSION['e_email'] = "Input correct email address!";//Email error message
-    }
-
-    require_once "connect.php";
-    mysqli_report(MYSQLI_REPORT_STRICT);//Instead of warnings, throw exceptions
-
-    try{
-      $connection = new mysqli($host, $db_user, $db_password, $db_name);
-      if ($connection->connect_errno!=0){
-        throw new Exception(mysqli_connect_errno());
-      }else{
-        if($successVal == true){
-          //Sanitize email (replace any '' and "" with HTML entities)
-          /*$email = htmlentities($email, ENT_QUOTES, "UTF-8");
-
-          $result = $connection->query(sprintf("SELECT user_id FROM users WHERE email='%s'", mysqli_real_escape_string($connection,$email)));//Variable to store result of the SQL query which selects the user from the db
-
-          if (!$result){
-            throw new Exception($connection->error);
-          }
-
-          $emailsNum = $result->num_rows;
-
-          if($emailsNum > 0){
-            $regex = "/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+=?^_-].{8,}$/";
-            $rand_pass = randomPassword();
-
-            do{
-              $rand_pass = randomPassword();
-            }while(!preg_match($regex, $rand_pass));
-
-            $pass_hash = password_hash($rand_pass, PASSWORD_DEFAULT);
-
-            if ($connection->query("UPDATE users SET password = '$pass_hash'"){
-              $msg = "Your new password is: $rand_pass"
-
-              if(mail($email,"Account password reset (Smith's Computer Service)",$msg)){
-                $_SESSION['pass_reset_success'] = true;
-                header('Location: pass_reset_succes.php');
-              }
-            }*/
-
-          }else{
-            $_SESSION['e_email'] = "Incorrect email address!";
-          }
-        }
-
-        $connection->close();
-    }
-    catch(Exception $e){
-      echo '<span style="color: red;">Server error! Sorry for the inconvinience, please try again at a different time.</span>';
-      //echo '<br />Developer info: '.$e;
-    }
+  //If successReg flag doesn't exist in the session (user hasn't registered a new account)
+  if (!isset($_SESSION['pass_reset_success'])){
+    header('Location: passreset.php');//Send user to the password reset page
+    exit();//Exit this file
+  }else{//If the successReg flag exists in the session
+    unset($_SESSION['pass_reset_success']);
   }
 
   //Check if the booking form has been submited
@@ -294,7 +224,6 @@
       //echo '<br />Developer info: '.$e;
     }
   }
-
 ?>
 
 <!DOCTYPE html>
@@ -316,7 +245,6 @@
   <!-- JavaScript
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/passreset_val.js"></script>
   <script type="text/javascript" src="js/functions.js"></script>
   <script type="text/javascript" src="js/booking_form_val.js"></script>
   <script>
@@ -336,6 +264,7 @@
     });
   });
   </script>
+
   <!-- Page icon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
@@ -569,7 +498,7 @@ EOL;
     </div>
   </div>
 
-  <div id="pass-reset-main">
+  <div id="sign-in-main">
     <div class="nav-bar">
       <div id="nav">
         <ul>
@@ -580,27 +509,17 @@ EOL;
           <li><a href="index.php" id="contact-nav">Contact</a></li>
           <li><a href="myaccount.php">My Account</a></li>
           <li><button id="booking-open" class="astext" onclick="on()">Booking</button></li>
-          <li><a href="sign_in.php">Sign In</a></li>
+          <li><a href="sign_in.php" style="color: #5B0606">Sign In</a></li>
         </ul>
       </div>
     </div>
 
-    <div id="pass-reset-form" class="container">
+    <div id="sign-in-form" class="container">
       <div class="heading">
-        <h1>Reset password</h1>
+        <h1>Thank you!</h1>
+        <h3>Your password has been reset successfully</h3>
+        <a href="myaccount.php"><h3>You can now sign in using your new password</h3></a>
       </div>
-
-      <form id="pass-reset-f" method="post" onsubmit="return valEmailReset()">
-        <label for="r-email-address" class="s-form-label">Email address:</label><br>
-        <input type="email" name="r-email-address" id="pass-reset-email" required><br>
-        <?php
-          if (isset($_SESSION['e_email'])){
-            echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_email'].'</div>';
-            unset($_SESSION['e_email']);
-          }
-        ?>
-        <input type="submit" value="Reset password">
-      </form>
     </div>
   </div>
 
