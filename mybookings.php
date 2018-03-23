@@ -644,10 +644,6 @@ EOL;
       <div id="cancel-booking-button">
         <button id="b-cancel">Cancel booking</button>
       </div>
-
-      <div id="test">
-
-      </div>
     </div>
   </div>
 </body>
