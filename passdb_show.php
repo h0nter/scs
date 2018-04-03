@@ -1,4 +1,7 @@
 <?php
+/*THIS FILE SHALL NOT BE UPLOADED TO THE SERVER!!!
+ONLY FOR THE MAINTENANCE PURPOSE------------------
+--------------------------------------------------*/
   session_start();
 ?>
 

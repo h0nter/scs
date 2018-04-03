@@ -26,15 +26,15 @@
 
       $db_result = $connection->query(sprintf("SELECT * FROM users WHERE email='%s'", mysqli_real_escape_string($connection,$email)));//Variable to store result of the SQL query which selects the user from the db
 
-      if (!$db_result){
-        throw new Exception($connection->error);
+      if (!$db_result){//In case of the SQL query error
+        throw new Exception($connection->error);//Throw an exception containing the error
       }
 
       $users_num = $db_result->num_rows;//Number of users found in the db
       if ($users_num > 0){//Check if any users were found in the db
         $record = $db_result->fetch_assoc();//Store user record data in an associative array
 
-        if(password_verify($password, $record['password'])){
+        if(password_verify($password, $record['password'])){//If password hashes are matching
           $_SESSION['loggedIn'] = true;//User is signed in
 
           //Assign values from the record table to global variables
@@ -64,7 +64,7 @@
     }
   }
   catch(Exception $e){
-    echo '<span style="color: red;">Server error! Sorry for the inconvinience, please try again at a different time.</span>';
-    //echo '<br />Developer info: '.$e;
+    echo '<span style="color: red;">Server error! Sorry for the inconvinience, please try again at a different time.</span>';//Show a server error message
+    //echo '<br />Developer info: '.$e;//Display the detailed description of an error - DEVELOPER USE ONLY!!!
   }
 ?>
