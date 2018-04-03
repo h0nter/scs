@@ -1,6 +1,6 @@
 <?php
-  $host = "localhost";
-  $db_user = "phpmyadmin";
-  $db_password = "flamingo12";
-  $db_name = "scs";
+  $host = "localhost";//Set hostname for the database connection
+  $db_user = "phpmyadmin";//Set username for the database connection
+  $db_password = "flamingo12";//Set password for the database connection
+  $db_name = "scs";//Set database name for the database connection
 ?>

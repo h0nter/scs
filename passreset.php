@@ -37,6 +37,8 @@
         throw new Exception(mysqli_connect_errno());
       }else{
         if($successVal == true){
+          //Code below is commented because it cannot be used on a home server
+
           //Sanitize email (replace any '' and "" with HTML entities)
           /*$email = htmlentities($email, ENT_QUOTES, "UTF-8");
 
