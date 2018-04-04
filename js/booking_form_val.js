@@ -21,7 +21,7 @@ function valForenamebook(){
 
   if (regex.test(forename)){//If 'forename' variable validation with the regex above is successful
     return true;//Return true
-  }else{
+  }else{//If validation is unsuccessful
     forenameObj.classList.remove('valid-field');//Remove normal styling from the 'booking-forename' element of the page
     forenameObj.classList.add('invalid-field');//Add red border and background to the 'booking-forename' element of the page
     return false;//Return false - validation unsuccessful
@@ -36,7 +36,7 @@ function valSurnamebook(){
 
   if (regex.test(surname)){//If 'surname' variable validation with the regex above is successful
     return true;//Return true
-  }else{
+  }else{//If validation is unsuccessful
     surnameObj.classList.remove('valid-field');//Remove normal styling from the 'booking-surname' element of the page
     surnameObj.classList.add('invalid-field');//Add red border and background to the 'booking-surname' element of the page
     return false;//Return false - validation unsuccessful
@@ -51,7 +51,7 @@ function valEmailbook(){
 
   if (regex.test(email)){//If 'email' variable validation with the regex above is successful
     return true;//Return true
-  }else{
+  }else{//If validation is unsuccessful
     emailObj.classList.remove('valid-field');//Remove normal styling from the 'booking-email' element of the page
     emailObj.classList.add('invalid-field');//Add red border and background to the 'booking-email' element of the page
     return false;//Return false - validation unsuccessful
@@ -66,7 +66,7 @@ function valPhoneNumbook(){
 
   if (regex.test(phoneNum)){//If 'phoneNum' variable validation with the regex above is successful
     return true;//Return true
-  }else{
+  }else{//If validation is unsuccessful
     phoneNumObj.classList.remove('valid-field');//Remove normal styling from the 'booking-phone-num' element of the page
     phoneNumObj.classList.add('invalid-field');//Add red border and background to the 'booking-phone-num' element of the page
     return false;//Return false - validation unsuccessful
@@ -81,10 +81,10 @@ function valAddressbook(){
 
   if (regex.test(address)){//If 'address' variable validation with the regex above is successful
     return true;//Return true
-  }else{
+  }else{//If validation is unsuccessful
     addressObj.classList.remove('valid-field');//Remove normal styling from the 'booking-addl1' element of the page
     addressObj.classList.add('invalid-field');//Add red border and background to the 'booking-addl1' element of the page
-    return false;//Return false
+    return false;//Return false - validation unsuccessful
   }
 }
 
@@ -96,10 +96,10 @@ function valAddress2book(){
 
   if (regex.test(address2) || address2 == ""){//If 'address' variable validation with the regex above is successful OR address2 is empty
     return true;//Return true
-  }else{
+  }else{//If validation is unsuccessful
     address2Obj.classList.remove('valid-field');//Remove normal styling from the 'booking-addl2' element of the page
     address2Obj.classList.add('invalid-field');//Add red border and background to the 'booking-addl2' element of the page
-    return false;//Return false
+    return false;//Return false - validation unsuccessful
   }
 }
 
@@ -107,14 +107,14 @@ function valAddress2book(){
 function valCitybook(){
   var city = document.forms["b-form"]["city"].value;//Assign 'city' value from the booking form to the 'city' variable
   const cityObj = document.getElementById("booking-city");//Declare a constant referring to the 'booking-city' input field object
-  const regex = /^[a-zA-Z]{2,20}$/;//Declare a regular expression to validate the address line-2 (LCase and UCase letters, between 2 and 20 characters long)
+  const regex = /^[a-zA-Z]{2,20}$/;//Declare a regular expression to validate the city (LCase and UCase letters, between 2 and 20 characters long)
 
   if (regex.test(city)){//If 'city' variable validation with the regex above is successful
     return true;//Return true
-  }else{
+  }else{//If validation is unsuccessful
     cityObj.classList.remove('valid-field');//Remove normal styling from the 'booking-city' element of the page
     cityObj.classList.add('invalid-field');//Add red border and background to the 'booking-city' element of the page
-    return false;//Return false
+    return false;//Return false - validation unsuccessful
   }
 }
 
@@ -127,7 +127,7 @@ function valPostcodebook(){
 
   if (regex.test(postcode)){//If 'postcode' variable validation with the regex above is successful
     return true;//Return true
-  }else{
+  }else{//If validation is unsuccessful
     postcodeObj.classList.remove('valid-field');//Remove normal styling from the 'booking-postcode' element of the page
     postcodeObj.classList.add('invalid-field');//Add red border and background to the 'booking-postcode' element of the page
     return false;//Return false - validation unsuccessful
@@ -142,7 +142,7 @@ function valDescriptionbook(){
 
   if (regex.test(description)){//If 'description' variable validation with the regex above is successful
     return true;//Return true
-  }else{
+  }else{//If validation is unsuccessful
     descriptionObj.classList.remove('valid-field');//Remove normal styling from the 'service-description' element of the page
     descriptionObj.classList.add('invalid-field');//Add red border and background to the 'service-description' element of the page
     return false;//Return false

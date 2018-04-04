@@ -1,13 +1,13 @@
 function valEmailReset(){
-  var email = document.forms["pass-reset-f"]["email-address"].value;
-  const emailObj = document.getElementById("pass-reset-email");
-  const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[a-z]{2}|com|org|edu|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
+  var email = document.forms["pass-reset-f"]["email-address"].value;//Assign 'email-address' value from the password reset form to the 'email' variable
+  const emailObj = document.getElementById("pass-reset-email");//Declare a constant referring to the 'pass-reset-email' input field object
+  const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[a-z]{2}|com|org|edu|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;//Declare a regular expression to validate the email address (Upper and lower-case letters, numbers or special characters, followed by max. one '.', followed by upper and lower-case letters, numbers or special characters, followed by '@', followed by at least one LCase letter or number, followed by max. one '.', followed by exactly 2 lower-case letters or any of the allowed top-level domains)
 
-  if (regex.test(email)){
-    return true;
-  }else{
-    emailObj.classList.remove('valid-field');
-    emailObj.classList.add('invalid-field');
-    return false;
+  if (regex.test(email)){//If 'email' variable validation with the regex above is successful
+    return true;//Return true
+  }else{//If validation is unsuccessful
+    emailObj.classList.remove('valid-field');//Remove normal styling from the 'pass-reset-email' element of the page
+    emailObj.classList.add('invalid-field');//Add red border and background to the 'pass-reset-email' element of the page
+    return false;//Return false - validation unsuccessful
   }
 }
