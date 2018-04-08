@@ -17,6 +17,7 @@ function valCurrentPswrd(){
   }else{//If validation is unsuccessful
     crntPasswordObj.classList.remove('valid-field');//Remove normal styling from the 'pass-change-crntpass' element of the page
     crntPasswordObj.classList.add('invalid-field');//Add red border and background to the 'pass-change-crntpass' element of the page
+    alert("Incorrect password format!\nPassword should consist of:\n- At least 1 uppercase letter\n- At least 1 digit\n- Minimum 8 characters");//Show error message
     return false;//Return false - validation unsuccessful
   }
 }
@@ -39,6 +40,7 @@ function valNewPswrd(){
       newPasswordObj.classList.add('invalid-field');//Add red border and background to the 'pass-change-newpass' element of the page
       confrimPasswordObj.classList.remove('valid-field');//Remove normal styling from the 'pass-change-confirmpass' element of the page
       confrimPasswordObj.classList.add('invalid-field');//Add red border and background to the 'pass-change-confirmpass' element of the page
+      alert("Incorrect password format!\nPassword should consist of:\n- At least 1 uppercase letter\n- At least 1 digit\n- Minimum 8 characters");//Show error message
       return false;//Return false - validation unsuccessful
     }
   }else{
@@ -46,6 +48,7 @@ function valNewPswrd(){
     newPasswordObj.classList.add('invalid-field');//Add red border and background to the 'pass-change-newpass' element of the page
     confrimPasswordObj.classList.remove('valid-field');//Remove normal styling from the 'pass-change-confirmpass' element of the page
     confrimPasswordObj.classList.add('invalid-field');//Add red border and background to the 'pass-change-confirmpass' element of the page
+    alert("Incorrect password format!\nPassword should consist of:\n- At least 1 uppercase letter\n- At least 1 digit\n- Minimum 8 characters");//Show error message
     return false;//Return false - validation unsuccessful
   }
 }

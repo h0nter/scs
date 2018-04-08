@@ -8,6 +8,7 @@ function valEmailLog(){
   }else{//If validation is unsuccessful
     emailObj.classList.remove('valid-field');//Remove normal styling from the 'sign-in-email' element of the page
     emailObj.classList.add('invalid-field');//Add red border and background to the 'sign-in-email' element of the page
+    alert("Incorrect email address!\nEnsure that it matches the format (domain names may differ):\nemailaddress@domain.com");//Show error message
     return false;//Return false - validation unsuccessful
   }
 }
@@ -22,6 +23,8 @@ function valPasswordLog(){
   }else{//If validation is unsuccessful
     passwordObj.classList.remove('valid-field');//Remove normal styling from the 'sign-in-password' element of the page
     passwordObj.classList.add('invalid-field');//Add red border and background to the 'sign-in-password' element of the page
+    document.forms["sign-in-f"]["user-password"].value = "";//Reset the input field value
+    alert("Incorrect password format!\nPassword should consist of:\n- At least 1 uppercase letter\n- At least 1 digit\n- Minimum 8 characters");//Show error
     return false;//Return false - validation unsuccessful
   }
 }

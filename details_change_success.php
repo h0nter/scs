@@ -252,13 +252,13 @@
   <script>
   $(document).ready(function(){//When the file loads (do the function)
     $("#booking-open").click(function(){//If booking-open button is clicked
-        <?php//Begin PHP script (server side)
+        <?php
           if (isset($_SESSION['loggedIn'])){//If user is logged in
             echo 'var logged_in = '.$_SESSION['loggedIn'].';';//Set 'logged_in' variable to true
           }else{
             echo 'var logged_in = false;';//Otherwise, set 'logged_in' to false
           }
-        ?>//End PHP script (server side)
+        ?>
 
         if (logged_in == false){//If user isn't logged in
           window.location.replace("sign_in.php");//Direct them to the Sign In page
@@ -278,7 +278,7 @@
   <!-- Booking form (overlay) -->
   <div id="overlay">
   	<div id="booking-form-main">
-      <?php//Begin PHP code (server side)
+      <?php
       if ($_SESSION['loggedIn'] == true){//If user is logged in
 //Display the booking form
 echo <<<EOL
@@ -492,7 +492,7 @@ echo <<<EOL
 </div>
 EOL;
         }
-      //End PHP code
+      
       ?>
 
       <div id="close-x" onclick="off()">

@@ -8,6 +8,7 @@ function valEmailReset(){
   }else{//If validation is unsuccessful
     emailObj.classList.remove('valid-field');//Remove normal styling from the 'pass-reset-email' element of the page
     emailObj.classList.add('invalid-field');//Add red border and background to the 'pass-reset-email' element of the page
+    alert("Incorrect email address!\nEnsure that it matches the format (domain names may differ):\nemailaddress@domain.com");//Show error message
     return false;//Return false - validation unsuccessful
   }
 }

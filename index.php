@@ -23,7 +23,8 @@
     if ($comp_make == ""){//If 'comp_make' value is empty
       $successVal = false;//Set successful validation flag to false
       $_SESSION['e_make'] = "This field cannot be empty";//Set error message for 'comp_make' field
-    }else if(($comp_make != "HP") && ($comp_make != "Lenovo") && ($comp_make != "Dell") && ($comp_make != "Asus") && ($comp_make != "Acer") && ($comp_make != "Apple") && ($comp_make != "Alienware") && ($comp_make != "Other")){//If 'comp_make' variable isn't empty but doesn't have a valid value
+    //If 'comp_make' variable isn't empty but doesn't have a valid value
+    }else if(($comp_make != "HP") && ($comp_make != "Lenovo") && ($comp_make != "Dell") && ($comp_make != "Asus") && ($comp_make != "Acer") && ($comp_make != "Apple") && ($comp_make != "Alienware") && ($comp_make != "Other")){
       $successVal = false;//Set successful validation flag to false
       $_SESSION['e_make'] = "Incorrect value!";//Set error message for 'make' field
     }
@@ -151,7 +152,7 @@
     }
 
     //Check if the postcode is valid
-    $postcode = $_POST['b-postcode'];/Assign value submitted in the booking form to 'postcode' variable/*Assign value submitted in the booking form to 'postcode' variable*/
+    $postcode = $_POST['b-postcode'];/*Assign value submitted in the booking form to 'postcode' variable*/
     $regex = "/^(([a-zA-Z]{2}\d[a-zA-Z]\s\d[a-zA-Z]{2})|([a-zA-Z]\d[a-zA-Z]\s\d[a-zA-Z]{2})|([a-zA-Z]\d\s\d[a-zA-Z]{2})|([a-zA-Z]\d{2}\s\d[a-zA-Z]{2})|([a-zA-Z]{2}\d\s\d[a-zA-Z]{2})|([a-zA-Z]{2}\d{2}\s\d[a-zA-Z]{2}))$/";
     //Set regular expression for 'postcode' validation
 
@@ -282,13 +283,13 @@
   <script>
   $(document).ready(function(){//When the file loads (do the function)
     $("#booking-open").click(function(){//If booking-open button is clicked
-        <?php//Begin PHP script (server side)
+        <?php
           if (isset($_SESSION['loggedIn'])){//If user is logged in
             echo 'var logged_in = '.$_SESSION['loggedIn'].';';//Set 'logged_in' variable to true
           }else{
             echo 'var logged_in = false;';//Otherwise, set 'logged_in' to false
           }
-        ?>//End PHP script (server side)
+        ?>
 
         if (logged_in == false){//If user isn't logged in
           window.location.replace("sign_in.php");//Direct them to the Sign In page
@@ -309,7 +310,7 @@
   <!-- Booking form (overlay) -->
   <div id="overlay">
   	<div id="booking-form-main">
-      <?php//Begin PHP code (server side)
+      <?php
       if ($_SESSION['loggedIn'] == true){//If user is logged in
 //Display the booking form
 echo <<<EOL
@@ -429,7 +430,7 @@ echo <<<EOL
 
     <div id="date-select">
       <h4>SELECT THE DATE:</h4>
-      <input type="date" name="booking-date" id="booking-date">
+      <input type="date" name="booking-date" id="booking-date" required>
 EOL;
         if (isset($_SESSION['e_date'])){//If booking_date error exists (user has made an error)
           echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_date'].'</div>';//Display the error message
@@ -443,28 +444,28 @@ echo <<<EOL
         <h4>PERSONAL INFORMATION:</h4>
       </div>
       <div id="col-1">
-        <input type="text" name="b-forename" id="booking-forename" placeholder="Forename*"><br>
+        <input type="text" name="b-forename" id="booking-forename" placeholder="Forename*" required><br>
 EOL;
           if (isset($_SESSION['e_bforename'])){//If booking_forename error exists (user has made an error)
             echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bforename'].'</div>';//Display the error message
             unset($_SESSION['e_bforename']);//Unset the error variable so it doesn't show up until the next error
           }
 echo <<<EOL
-        <input type="text" name="b-surname" id="booking-surname" placeholder="Surname*"><br>
+        <input type="text" name="b-surname" id="booking-surname" placeholder="Surname*" required><br>
 EOL;
           if (isset($_SESSION['e_bsurname'])){//If booking_surname error exists (user has made an error)
             echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bsurname'].'</div>';//Display the error message
             unset($_SESSION['e_bsurname']);//Unset the error variable so it doesn't show up until the next error
           }
 echo <<<EOL
-        <input type="email" name="b-email-address" id="booking-email" placeholder="E-mail address*"><br>
+        <input type="email" name="b-email-address" id="booking-email" placeholder="E-mail address*" required><br>
 EOL;
           if (isset($_SESSION['e_bemail'])){//If booking_email error exists (user has made an error)
             echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bemail'].'</div>';//Display the error message
             unset($_SESSION['e_bemail']);//Unset the error variable so it doesn't show up until the next error
           }
 echo <<<EOL
-        <input type="text" name="b-phone-num" id="booking-phone-num" placeholder="Phone Number*"><br>
+        <input type="text" name="b-phone-num" id="booking-phone-num" placeholder="Phone Number*" required><br>
 EOL;
           if (isset($_SESSION['e_bphonenum'])){//If booking_phone_number error exists (user has made an error)
             echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bphonenum'].'</div>';//Display the error message
@@ -474,7 +475,7 @@ echo <<<EOL
       </div>
 
       <div id="col-2">
-        <input type="text" name="b-address-line1" id="booking-addl1" placeholder="Address"><br>
+        <input type="text" name="b-address-line1" id="booking-addl1" placeholder="Address" required><br>
 EOL;
           if (isset($_SESSION['e_baddress'])){//If booking_address error exists (user has made an error)
             echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_baddress'].'</div>';//Display the error message
@@ -488,14 +489,14 @@ EOL;
             unset($_SESSION['e_baddress']);//Unset the error variable so it doesn't show up until the next error
           }
 echo <<<EOL
-        <input type="text" name="b-city" id="booking-city" placeholder="City"><br>
+        <input type="text" name="b-city" id="booking-city" placeholder="City" required><br>
 EOL;
           if (isset($_SESSION['e_bcity'])){//If booking_city error exists (user has made an error)
             echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bcity'].'</div>';//Display the error message
             unset($_SESSION['e_bcity']);//Unset the error variable so it doesn't show up until the next error
           }
 echo <<<EOL
-        <input type="text" name="b-postcode" id="booking-postcode" placeholder="Postcode" style="max-width: 15rem;"><br>
+        <input type="text" name="b-postcode" id="booking-postcode" placeholder="Postcode" style="max-width: 15rem;" required><br>
       </div>
 EOL;
         if (isset($_SESSION['e_bpostcode'])){//If booking_postcode error exists (user has made an error)
@@ -507,7 +508,7 @@ echo <<<EOL
 
     <div id="description">
       <h4>FAULT/PROBLEM/SERVICE DESCRIPTION:</h4>
-      <textarea name="service-description" id="service-description" maxlength="1000" rows="5" placeholder="Max. 1000 characters"></textarea>
+      <textarea name="service-description" id="service-description" maxlength="1000" rows="5" placeholder="Max. 1000 characters" required></textarea>
 EOL;
         if (isset($_SESSION['e_serviceds'])){//If booking_service_description error exists (user has made an error)
           echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_serviceds'].'</div>';//Display the error message
@@ -523,7 +524,7 @@ echo <<<EOL
 </div>
 EOL;
         }
-      //End PHP code
+
       ?>
 
       <div id="close-x" onclick="off()">
@@ -537,11 +538,11 @@ EOL;
     <div class="nav-bar">
       <div id="nav">
         <ul>
-          <li><a href="index.php" id="home-nav">Home</a></li>
-          <li><a href="index.php" id="about-nav">About</a></li>
-          <li><a href="index.php" id="services-nav">Services</a></li>
-          <li><a href="index.php" id="prices-nav">Prices</a></li>
-          <li><a href="index.php" id="contact-nav">Contact</a></li>
+          <li><a href="index.php#landing-page" id="home-nav">Home</a></li>
+          <li><a href="index.php#about" id="about-nav">About</a></li>
+          <li><a href="index.php#services" id="services-nav">Services</a></li>
+          <li><a href="index.php#services" id="prices-nav">Prices</a></li>
+          <li><a href="index.php#contact" id="contact-nav">Contact</a></li>
           <li><a href="myaccount.php">My Account</a></li>
           <li><button id="booking-open" class="astext" onclick="on()">Booking</button></li>
           <li><a href="sign_in.php">Sign In</a></li>
@@ -692,18 +693,18 @@ EOL;
 
           <input id="submit-contact" type="submit" value="SEND MESSAGE&#8594;"/>
         </div>
-        <?php//Begin PHP script
+        <?php
           if (isset($_SESSION['e_cemail'])){//If contact_email error exists (user has made an error - validation unsuccessful)
             echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_cemail'].'</div>';//Display the error message
             unset($_SESSION['e_cemail']);//Unset the error variable so it doesn't show up until the next error
           }
-          //End PHP script
+
         ?>
 
         <div id="contact-text-input">
           <textarea name="message-contact" id="message-contact" maxlength="4000" rows="17" placeholder="Your message..."></textarea>
         </div>
-        <?php//Begin PHP script
+        <?php
           if (isset($_SESSION['e_cmessage'])){//If contact_message error exists (user has made an error - validation unsuccessful)
             echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_cmessage'].'</div>';//Display the error message
             unset($_SESSION['e_cmessage']);//Unset the error variable so it doesn't show up until the next error

@@ -32,7 +32,8 @@
     if ($comp_make == ""){//If 'comp_make' value is empty
       $successVal = false;//Set successful validation flag to false
       $_SESSION['e_make'] = "This field cannot be empty";//Set error message for 'comp_make' field
-    }else if(($comp_make != "HP") && ($comp_make != "Lenovo") && ($comp_make != "Dell") && ($comp_make != "Asus") && ($comp_make != "Acer") && ($comp_make != "Apple") && ($comp_make != "Alienware") && ($comp_make != "Other")){//If 'comp_make' variable isn't empty but doesn't have a valid value
+    //If 'comp_make' variable isn't empty but doesn't have a valid value
+    }else if(($comp_make != "HP") && ($comp_make != "Lenovo") && ($comp_make != "Dell") && ($comp_make != "Asus") && ($comp_make != "Acer") && ($comp_make != "Apple") && ($comp_make != "Alienware") && ($comp_make != "Other")){
       $successVal = false;//Set successful validation flag to false
       $_SESSION['e_make'] = "Incorrect value!";//Set error message for 'make' field
     }
@@ -160,7 +161,7 @@
     }
 
     //Check if the postcode is valid
-    $postcode = $_POST['b-postcode'];/Assign value submitted in the booking form to 'postcode' variable/*Assign value submitted in the booking form to 'postcode' variable*/
+    $postcode = $_POST['b-postcode'];/*Assign value submitted in the booking form to 'postcode' variable*/
     $regex = "/^(([a-zA-Z]{2}\d[a-zA-Z]\s\d[a-zA-Z]{2})|([a-zA-Z]\d[a-zA-Z]\s\d[a-zA-Z]{2})|([a-zA-Z]\d\s\d[a-zA-Z]{2})|([a-zA-Z]\d{2}\s\d[a-zA-Z]{2})|([a-zA-Z]{2}\d\s\d[a-zA-Z]{2})|([a-zA-Z]{2}\d{2}\s\d[a-zA-Z]{2}))$/";
     //Set regular expression for 'postcode' validation
 
@@ -252,13 +253,13 @@
   <script>
   $(document).ready(function(){//When the file loads (do the function)
     $("#booking-open").click(function(){//If booking-open button is clicked
-        <?php//Begin PHP script (server side)
+        <?php
           if (isset($_SESSION['loggedIn'])){//If user is logged in
             echo 'var logged_in = '.$_SESSION['loggedIn'].';';//Set 'logged_in' variable to true
           }else{
             echo 'var logged_in = false;';//Otherwise, set 'logged_in' to false
           }
-        ?>//End PHP script (server side)
+        ?>
 
         if (logged_in == false){//If user isn't logged in
           window.location.replace("sign_in.php");//Direct them to the Sign In page
@@ -278,7 +279,7 @@
   <!-- Booking form (overlay) -->
   <div id="overlay">
   	<div id="booking-form-main">
-      <?php//Begin PHP code (server side)
+      <?php
       if ($_SESSION['loggedIn'] == true){//If user is logged in
 //Display the booking form
 echo <<<EOL
@@ -492,7 +493,7 @@ echo <<<EOL
 </div>
 EOL;
         }
-      //End PHP code
+
       ?>
 
       <div id="close-x" onclick="off()">
@@ -505,11 +506,11 @@ EOL;
     <div class="nav-bar">
       <div id="nav">
         <ul>
-          <li><a href="index.php" id="home-nav">Home</a></li>
-          <li><a href="index.php" id="about-nav">About</a></li>
-          <li><a href="index.php" id="services-nav">Services</a></li>
-          <li><a href="index.php" id="prices-nav">Prices</a></li>
-          <li><a href="index.php" id="contact-nav">Contact</a></li>
+          <li><a href="index.php#landing-page" id="home-nav">Home</a></li>
+          <li><a href="index.php#about" id="about-nav">About</a></li>
+          <li><a href="index.php#services" id="services-nav">Services</a></li>
+          <li><a href="index.php#services" id="prices-nav">Prices</a></li>
+          <li><a href="index.php#contact" id="contact-nav">Contact</a></li>
           <li><a href="myaccount.php">My Account</a></li>
           <li><button id="booking-open" class="astext" onclick="on()">Booking</button></li>
           <li><a href="sign_in.php">Sign In</a></li>

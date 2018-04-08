@@ -180,7 +180,8 @@
     if ($comp_make == ""){//If 'comp_make' value is empty
       $successVal = false;//Set successful validation flag to false
       $_SESSION['e_make'] = "This field cannot be empty";//Set error message for 'comp_make' field
-    }else if(($comp_make != "HP") && ($comp_make != "Lenovo") && ($comp_make != "Dell") && ($comp_make != "Asus") && ($comp_make != "Acer") && ($comp_make != "Apple") && ($comp_make != "Alienware") && ($comp_make != "Other")){//If 'comp_make' variable isn't empty but doesn't have a valid value
+    //If 'comp_make' variable isn't empty but doesn't have a valid value
+    }else if(($comp_make != "HP") && ($comp_make != "Lenovo") && ($comp_make != "Dell") && ($comp_make != "Asus") && ($comp_make != "Acer") && ($comp_make != "Apple") && ($comp_make != "Alienware") && ($comp_make != "Other")){
       $successVal = false;//Set successful validation flag to false
       $_SESSION['e_make'] = "Incorrect value!";//Set error message for 'make' field
     }
@@ -308,7 +309,7 @@
     }
 
     //Check if the postcode is valid
-    $postcode = $_POST['b-postcode'];/Assign value submitted in the booking form to 'postcode' variable/*Assign value submitted in the booking form to 'postcode' variable*/
+    $postcode = $_POST['b-postcode'];/*Assign value submitted in the booking form to 'postcode' variable*/
     $regex = "/^(([a-zA-Z]{2}\d[a-zA-Z]\s\d[a-zA-Z]{2})|([a-zA-Z]\d[a-zA-Z]\s\d[a-zA-Z]{2})|([a-zA-Z]\d\s\d[a-zA-Z]{2})|([a-zA-Z]\d{2}\s\d[a-zA-Z]{2})|([a-zA-Z]{2}\d\s\d[a-zA-Z]{2})|([a-zA-Z]{2}\d{2}\s\d[a-zA-Z]{2}))$/";
     //Set regular expression for 'postcode' validation
 
@@ -401,13 +402,13 @@
   <script>
   $(document).ready(function(){//When the file loads (do the function)
     $("#booking-open").click(function(){//If booking-open button is clicked
-        <?php//Begin PHP script (server side)
+        <?php
           if (isset($_SESSION['loggedIn'])){//If user is logged in
             echo 'var logged_in = '.$_SESSION['loggedIn'].';';//Set 'logged_in' variable to true
           }else{
             echo 'var logged_in = false;';//Otherwise, set 'logged_in' to false
           }
-        ?>//End PHP script (server side)
+        ?>
 
         if (logged_in == false){//If user isn't logged in
           window.location.replace("sign_in.php");//Direct them to the Sign In page
@@ -432,7 +433,7 @@
   <!-- Booking form (overlay) -->
   <div id="overlay">
     <div id="booking-form-main">
-      <?php//Begin PHP code (server side)
+      <?php
       if ($_SESSION['loggedIn'] == true){//If user is logged in
 //Display the booking form
 echo <<<EOL
@@ -646,7 +647,7 @@ echo <<<EOL
 </div>
 EOL;
         }
-      //End PHP code
+
       ?>
 
       <div id="close-x" onclick="off()">
@@ -658,11 +659,11 @@ EOL;
   <div class="nav-bar">
     <div id="nav">
       <ul>
-        <li><a href="index.php" id="home-nav">Home</a></li>
-        <li><a href="index.php" id="about-nav">About</a></li>
-        <li><a href="index.php" id="services-nav">Services</a></li>
-        <li><a href="index.php" id="prices-nav">Prices</a></li>
-        <li><a href="index.php" id="contact-nav">Contact</a></li>
+        <li><a href="index.php#landing-page" id="home-nav">Home</a></li>
+        <li><a href="index.php#about" id="about-nav">About</a></li>
+        <li><a href="index.php#services" id="services-nav">Services</a></li>
+        <li><a href="index.php#services" id="prices-nav">Prices</a></li>
+        <li><a href="index.php#contact" id="contact-nav">Contact</a></li>
         <li><a href="myaccount.php">My Account</a></li>
         <li><button id="booking-open" class="astext" onclick="on()">Booking</button></li>
         <li><a href="sign_in.php">Sign In</a></li>
@@ -680,42 +681,42 @@ EOL;
         <div id="required-data">
           <label for="forename" class="d-form-label">Forename<span style="color: red;">*</span>:</label> <input type="text" name="forename" id="new-account-forename" required><br>
 
-          <?php//Begin PHP code (server side)
+          <?php
             if (isset($_SESSION['e_forename'])){//If forename error exists (user has made an error)
               echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_forename'].'</div>';//Display the error message
               unset($_SESSION['e_forename']);//Unset the error variable so it doesn't show up until the next error
             }
-            //End PHP Code
+
           ?>
 
           <label for="surname" class="d-form-label">Surname<span style="color: red;">*</span>:</label><input type="text" name="surname" id="new-account-surname" required><br>
 
-          <?php//Begin PHP code (server side)
+          <?php
             if (isset($_SESSION['e_surname'])){//If surname error exists (user has made an error)
               echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_surname'].'</div>';//Display the error message
               unset($_SESSION['e_surname']);//Unset the error variable so it doesn't show up until the next error
             }
-            //End PHP Code
+
           ?>
 
           <label for="email-address" class="d-form-label">E-mail address<span style="color: red;">*</span>:</label><input type="email" name="email-address" id="new-account-email" required><br>
 
-          <?php//Begin PHP code (server side)
+          <?php
             if (isset($_SESSION['e_email'])){//If email error exists (user has made an error)
               echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_email'].'</div>';//Display the error message
               unset($_SESSION['e_email']);//Unset the error variable so it doesn't show up until the next error
             }
-            //End PHP Code
+
           ?>
 
           <label for="u-password" class="d-form-label">Password<span style="color: red;">*</span>:</label><input type="password" name="u-password" id="new-account-password" required><br>
 
-          <?php//Begin PHP code (server side)
+          <?php
             if (isset($_SESSION['e_password'])){//If password error exists (user has made an error)
               echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_password'].'</div>';//Display the error message
               unset($_SESSION['e_password']);//Unset the error variable so it doesn't show up until the next error
             }
-            //End PHP Code
+
           ?>
 
           <label for="pass-confirm" class="d-form-label">Confirm password<span style="color: red;">*</span>:</label><input type="password" name="pass-confirm" id="new-account-passconf" required><br>
@@ -726,73 +727,73 @@ EOL;
         <div id="additional-data">
           <label for="phone-num" class="d-form-label">Phone Number:</label><input type="text" name="phone-num" id="new-account-phonenum"><br>
 
-          <?php//Begin PHP code (server side)
+          <?php
             if (isset($_SESSION['e_phonenum'])){//If phone number error exists (user has made an error)
               echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_phonenum'].'</div>';//Display the error message
               unset($_SESSION['e_phonenum']);//Unset the error variable so it doesn't show up until the next error
             }
-            //End PHP Code
+
           ?>
 
           <label for="address-line1" class="d-form-label">Address:</label><input type="text" name="address-line1" id="new-account-addl1"><br>
 
-          <?php//Begin PHP code (server side)
+          <?php
             if (isset($_SESSION['e_address1'])){//If address1 error exists (user has made an error)
               echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_address1'].'</div>';//Display the error message
               unset($_SESSION['e_address1']);//Unset the error variable so it doesn't show up until the next error
             }
-            //End PHP Code
+
           ?>
 
           <label for="address-line2" class="d-form-label">Address (line 2):</label><input type="text" name="address-line2" id="new-account-addl2"><br>
 
-          <?php//Begin PHP code (server side)
+          <?php
             if (isset($_SESSION['e_address2'])){//If address2 error exists (user has made an error)
               echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_address2'].'</div>';//Display the error message
               unset($_SESSION['e_address2']);//Unset the error variable so it doesn't show up until the next error
             }
-            //End PHP Code
+
           ?>
 
           <label for="city" class="d-form-label">City:</label><input type="text" name="city" id="new-account-city"><br>
 
-          <?php//Begin PHP code (server side)
+          <?php
             if (isset($_SESSION['e_city'])){//If city error exists (user has made an error)
               echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_city'].'</div>';//Display the error message
               unset($_SESSION['e_city']);//Unset the error variable so it doesn't show up until the next error
             }
-            //End PHP Code
+
           ?>
 
           <label for="postcode" class="d-form-label">Postcode:</label><input type="text" name="postcode" id="new-account-postcode" style="max-width: 15rem;"><br>
 
-          <?php//Begin PHP code (server side)
+          <?php
             if (isset($_SESSION['e_postoce'])){//If postcode error exists (user has made an error)
               echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_postcode'].'</div>';//Display the error message
               unset($_SESSION['e_postcode']);//Unset the error variable so it doesn't show up until the next error
             }
-            //End PHP Code
+
           ?>
 
           <label>
           <input type="checkbox" name="terms-cond" required/>I agree to terms and conditions</label>
 
-          <?php//Begin PHP code (server side)
+          <?php
             if (isset($_SESSION['e_checkbox'])){//If checkbox error exists (user hasn't ticked it)
               echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_checkbox'].'</div>';//Display the error message
               unset($_SESSION['e_checkbox']);//Unset the error variable so it doesn't show up until the next error
             }
-            //End PHP Code
+
           ?>
 
           <div class="g-recaptcha" data-sitekey="6Ldi7UsUAAAAAIMr-M7_X5dvI6b4w0CIcVYP0Tin"></div>
 
-          <?php//Begin PHP code (server side)
+          <?php
             if (isset($_SESSION['e_bot'])){//If reCAPTCHA error exists (user has made an error)
               echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_bot'].'</div>';//Display the error message
               unset($_SESSION['e_bot']);//Unset the error variable so it doesn't show up until the next error
             }
-            //End PHP Code
+
           ?>
 
           <input type="submit" value="Create your account">

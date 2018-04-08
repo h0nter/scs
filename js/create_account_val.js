@@ -9,6 +9,8 @@ function valForenameAcc(){
   }else{//If validation is unsuccessful
     forenameObj.classList.remove('valid-field');//Remove normal styling from the 'new-account-forename' element of the page
     forenameObj.classList.add('invalid-field');//Add red border and background to the 'new-account-forename' element of the page
+    document.forms["account-create-f"]["forename"].value = "";//Reset the input field value
+    alert("Incorrect forename!\nForename has to consist of letters only and be in range 2-30 characters.");//Show error message
     return false;//Return false - validation unsuccessful
   }
 }
@@ -24,6 +26,8 @@ function valSurnameAcc(){
   }else{//If validation is unsuccessful
     surnameObj.classList.remove('valid-field');//Remove normal styling from the 'new-account-surname' element of the page
     surnameObj.classList.add('invalid-field');//Add red border and background to the 'new-account-surname' element of the page
+    document.forms["account-create-f"]["surname"].value = "";//Reset the input field value
+    alert("Incorrect surname!\nSurname has to consist of letters only and be in range 2-30 characters\nIn case of double-barrelled surnames, separate 2 parts with \"-\" symbol.");//Show error message
     return false;//Return false - validation unsuccessful
   }
 }
@@ -39,6 +43,8 @@ function valEmailAcc(){
   }else{//If validation is unsuccessful
     emailObj.classList.remove('valid-field');//Remove normal styling from the 'new-account-email' element of the page
     emailObj.classList.add('invalid-field');//Add red border and background to the 'new-account-email' element of the page
+    document.forms["account-create-f"]["email-address"].value = "";//Reset the input field value
+    alert("Incorrect email address!\nEnsure that it matches the format (domain names may differ):\nemailaddress@domain.com");//Show error message
     return false;//Return false - validation unsuccessful
   }
 }
@@ -61,6 +67,9 @@ function valPasswords(){
       newPasswordObj.classList.add('invalid-field');//Add red border and background to the 'new-account-password' element of the page
       confrimPasswordObj.classList.remove('valid-field');//Remove normal styling from the 'new-account-passconf' element of the page
       confrimPasswordObj.classList.add('invalid-field');//Add red border and background to the 'new-account-passconf' element of the page
+      document.forms["account-create-f"]["u-password"].value = "";//Reset the input field value
+      document.forms["account-create-f"]["pass-confirm"].value = "";//Reset the input field value
+      alert("Incorrect password format!\nPassword should consist of:\n- At least 1 uppercase letter\n- At least 1 digit\n- Minimum 8 characters");//Show error message
       return false;//Return false - validation unsuccessful
     }
   }else{//If validation with regular expression is unsuccessful
@@ -68,6 +77,9 @@ function valPasswords(){
     newPasswordObj.classList.add('invalid-field');//Add red border and background to the 'new-account-password' element of the page
     confrimPasswordObj.classList.remove('valid-field');//Remove normal styling from the 'new-account-passconf' element of the page
     confrimPasswordObj.classList.add('invalid-field');//Add red border and background to the 'new-account-passconf' element of the page
+    document.forms["account-create-f"]["u-password"].value = "";//Reset the input field value
+    document.forms["account-create-f"]["pass-confirm"].value = "";//Reset the input field value
+    alert("Incorrect password format!\nPassword should consist of:\n- At least 1 uppercase letter\n- At least 1 digit\n- Minimum 8 characters");//Show error message
     return false;//Return false - validation unsuccessful
   }
 }
@@ -83,6 +95,8 @@ function valPhoneNumAcc(){
   }else{//If validation is unsuccessful
     phoneNumObj.classList.remove('valid-field');//Remove normal styling from the 'new-account-phonenum' element of the page
     phoneNumObj.classList.add('invalid-field');//Add red border and background to the 'new-account-phonenum' element of the page
+    document.forms["account-create-f"]["phone-num"].value = "";//Reset the input field value
+    alert("Incorrect phone number!\nMake sure that you're entering a valid UK phone number, consisting of number only.");//Show error message
     return false;//Return false - validation unsuccessful
   }
 }
@@ -98,6 +112,8 @@ function valAddressAcc(){
   }else{//If validation is unsuccessful
     addressObj.classList.remove('valid-field');//Remove normal styling from the 'new-account-addl1' element of the page
     addressObj.classList.add('invalid-field');//Add red border and background to the 'new-account-addl1' element of the page
+    document.forms["account-create-f"]["address-line1"].value = "";//Reset the input field value
+    alert("Incorrect address (line 1)!\nIt can only contain letters, numbers and spaces\nand has to be between 2-50 characters long.");//Show error message
     return false;//Return false - validation unsuccessful
   }
 }
@@ -113,6 +129,8 @@ function valAddress2Acc(){
   }else{//If validation is unsuccessful
     address2Obj.classList.remove('valid-field');//Remove normal styling from the '' element of the page
     address2Obj.classList.add('invalid-field');//Add red border and background to the 'new-account-addl2' element of the page
+    document.forms["account-create-f"]["address-line2"].value = "";//Reset the input field value
+    alert("Incorrect address (line 2)!\nIt can only contain letters, numbers and spaces\nand has to be between 2-50 characters long.");//Show error message
     return false;//Return false - validation unsuccessful
   }
 }
@@ -128,6 +146,8 @@ function valCityAcc(){
   }else{//If validation is unsuccessful
     cityObj.classList.remove('valid-field');//Remove normal styling from the 'new-account-city' element of the page
     cityObj.classList.add('invalid-field');//Add red border and background to the new-account-city' element of the page
+    document.forms["account-create-f"]["city"].value = "";//Reset the input field value
+    alert("Incorrect city!\nEnsure that:\n-It only contains upper and lowercase letters\n-Is between 2 and 20 characters long");//Show error message
     return false;//Return false - validation unsuccessful
   }
 }
@@ -144,6 +164,8 @@ function valPostcodeAcc(){
   }else{//If validation is unsuccessful
     postcodeObj.classList.remove('valid-field');//Remove normal styling from the 'new-account-postcode' element of the page
     postcodeObj.classList.add('invalid-field');//Add red border and background to the 'new-account-postcode' element of the page
+    document.forms["account-create-f"]["postcode"].value = "";//Reset the input field value
+    alert("Incorrect postcode!\nMake sure that you're entering a valid UK postcode.");//Show error message
     return false;//Return false - validation unsuccessful
   }
 }

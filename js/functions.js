@@ -12,12 +12,13 @@
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 //Open the booking form
 function on() {
-    document.getElementById("overlay").style.display = "flex";//Make booking form visible
+  document.getElementById("overlay").style.display = "flex";//Make booking form visible
 }
 
 //Close the booking form
 function off() {
-    //Set up an array with fields selectors
+  if(confirm("Are you sure you want to close the form?\n(Any unsaved data will be lost)") == true){
+    //Set up an array with input fields selectors
     var resetObjects = [document.getElementById("year-prod"),document.getElementById("booking-forename"),document.getElementById("booking-surname"),document.getElementById("booking-email"),document.getElementById("booking-phone-num"),document.getElementById("booking-addl1"),document.getElementById("booking-addl2"),document.getElementById("booking-city"),document.getElementById("booking-postcode"),document.getElementById("service-description")]
 
     document.getElementById("overlay").style.display = "none"; //Close the booking form
@@ -29,4 +30,5 @@ function off() {
     }
 
     document.getElementById("b-form").reset(); //Reset the booking form
+  }
 }
