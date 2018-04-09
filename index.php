@@ -538,7 +538,7 @@ EOL;
     <div class="nav-bar">
       <div id="nav">
         <ul>
-          <li><a href="index.php#landing-page" id="home-nav">Home</a></li>
+          <li><a href="index.php#landing-page" id="home-nav" style="color: #5B0606">Home</a></li>
           <li><a href="index.php#about" id="about-nav">About</a></li>
           <li><a href="index.php#services" id="services-nav">Services</a></li>
           <li><a href="index.php#services" id="prices-nav">Prices</a></li>

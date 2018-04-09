@@ -4,7 +4,7 @@ function valYearOfProdbook(){
   const yearProd = document.getElementById("year-prod");//Declare a constant referring to the 'year' input field object
   const regex = /^((19||20)+([0-9]{2}))$/;//Declare a regular expression to validate the year of production ('19' or '20' followed by any two digits)
 
-  if (regex.test(yop)){//If 'yop' variable validation with the regex above is successful
+  if (regex.test(yop) || yop == ""){//If 'yop' variable validation with the regex above is successful
     return true;//Return true
   }else{//If validation is unsuccessful
     yearProd.classList.remove('valid-field');//Remove normal styling from the 'year-prod' element of the page
