@@ -32,7 +32,7 @@
     //Check if computer model is valid
     $comp_model = $_POST['model'];//Assign value submitted in the booking form to 'comp_model' variable
 
-    if ((strlen($comp_model) < 2) || (strlen($comp_model) > 30)){//If 'comp_model' value is less than 2 or more than 30 characters
+    if (($comp_model != "") && ((strlen($comp_model) < 2) || (strlen($comp_model) > 30))){//If 'comp_model' value isn't "" and is less than 2 or more than 30 characters long
       $successVal = false;//Set successful validation flag to false
       $_SESSION['e_model'] = "Computer model must be between 2 and 30 characters!";//Set error message for 'model' field
     }
@@ -43,7 +43,7 @@
     $year_of_prod = $_POST['year'];//Assign value submitted in the booking form to 'year_of_prod' variable
     $regex = "/^((19||20)+([0-9]{2}))$/";//Set regular expression for 'year_of_prod' validation
 
-    if (!preg_match($regex, $year_of_prod)){//If 'year_of_prod' validation is unsuccesful
+    if ((!preg_match($regex, $year_of_prod)) && ($year_of_prod != "")){//If 'year_of_prod' validation is unsuccesful
       $successVal = false;//Set successful validation flag to false
       $_SESSION['e_year'] = "Enter a correct year in the range 1900-2099";//Set error message for 'year' field
     }
@@ -85,6 +85,18 @@
     if (!preg_match($regex, $booking_date)){//If 'booking_date' validation is unsuccesful
       $successVal = false;//Set successful validation flag to false
       $_SESSION['e_date'] = "Date has to be in a correct format!";//Set error message for 'booking-date' field
+    }else{
+
+      $current_date = date("Y-m-d");//Get the current day as a string
+
+      $dateB = new DateTime($booking_date);//Convert the booking date string into date form variable
+      $dateC = new DateTime($current_date);//Convert the current date string into date form variable
+      $dateC->modify('+1 day');//Increase current date by 1 day - bookings have to be made at least 1 day in advance
+
+      if ($dateB <= $dateC){//Check if booking is being made for at least the following day
+        $successVal = false;//Set successful validation flag to false
+        $_SESSION['e_date'] = "Date has to be in a correct format and in the future!";//Set error message for 'booking-date' field
+      }
     }
 
     //Check if forename is valid
@@ -164,7 +176,7 @@
     //Check if the service description is valid
     $service_note = $_POST['service-description'];//Assign value submitted in the booking form to 'service_note' variable
 
-    if ($service_note == ""){//If 'service_note' validation is unsuccesful and variable isn't empty
+    if (($service_note == "") || (strlen($service_note) > 1000)){//If 'service_note' validation is unsuccesful and variable isn't empty
       $successVal = false;//Set successful validation flag to false
       $_SESSION['e_serviceds'] = "This field cannot be empty";//Set error message for 'service_description' field
     }
@@ -180,7 +192,7 @@
         throw new Exception(mysqli_connect_errno());//Throw an exception containing error number
       }else{
         //Check if the email exists in the db
-        $result = $connection->query("SELECT user_id FROM users WHERE email='$email'");//Assign user_id values from users table, where email is equal to user's email, to 'result' variable
+        $result = $connection->query(sprintf("SELECT user_id FROM users WHERE email='%s'", mysqli_real_escape_string($connection,$email)));//Assign user_id values from users table, where email is equal to user's email, to 'result' variable
 
         if (!$result){//If the SQL query wasn't successful
           throw new Exception($connection->error);//Throw an exception containing the error
@@ -188,7 +200,7 @@
 
         $emailsNum = $result->num_rows;//Assign number of emails in the database to the 'emailsNum' variable
 
-        if($emailsNum = 0){//If email address doesn't exist in the database
+        if($emailsNum == 0){//If email address doesn't exist in the database
           $successVal = false;//Set successful validation flag to false
           $_SESSION['e_bemail'] = "This email doesn't exist in the database!";//Set error message for 'b-email-address' field
         }
@@ -430,8 +442,13 @@ echo <<<EOL
 
     <div id="date-select">
       <h4>SELECT THE DATE:</h4>
-      <input type="date" name="booking-date" id="booking-date" required>
+      <input type="date" name="booking-date" id="booking-date" min="
 EOL;
+      $cDate = date("Y-m-d");//Get the current date from the server time
+      $aDate = new DateTime($cDate);//Translate the date string into date format
+      $aDate->modify('+1 day');//Increase date by 1 day - bookings have to be made at least 1 day in advance
+      echo $aDate->format('Y-m-d').'" required>';//Output the date into 'min' date input property in the Y-m-d format
+
         if (isset($_SESSION['e_date'])){//If booking_date error exists (user has made an error)
           echo '<div style="color:red; font-size: 1.7rem;">'.$_SESSION['e_date'].'</div>';//Display the error message
           unset($_SESSION['e_date']);//Unset the error variable so it doesn't show up until the next error
