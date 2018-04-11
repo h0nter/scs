@@ -106,10 +106,10 @@
 
         $emailsNum = $result->num_rows;//Assign number of emails in the database to the 'emailsNum' variable
 
-        $c_user_email = $_SESSION['email'];//Assign currenty logged-in user email to the local variable
-        $c_user_id = $_SESSION['user_id'];//Assign currenty logged-in user id to the local variable
+        $c_user_email = $_SESSION['email'];//Assign currently logged-in user email to the local variable
+        $c_user_id = $_SESSION['user_id'];//Assign currently logged-in user id to the local variable
 
-        if (($emailsNum > 0) && ($email != $c_user_email)){//If the email address is already in the database
+        if ($emailsNum > 0){//If the email address is already in the database
           $successVal = false;//Set successful validation flag to false
           $_SESSION['e_email'] = "Sorry, this email is assigned to another account";//Set error message for 'email' field
         }

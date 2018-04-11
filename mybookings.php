@@ -57,6 +57,10 @@
         for ($i = 1; $i <= $_SESSION['bookings_num']; $i++){//Loop to get all of the user's bookings
           $userbookings = $connection->query("SELECT * FROM userbookings WHERE id='$i'");//Get a single user booking
 
+          if (!userbookings){//If there was an error with the SQL query
+            throw new Exception($connection->error);//Throw an exception containing the error
+          }
+
           $booking_records[$i] = $userbookings->fetch_assoc();//Add associative array of a single booking record into a single element of an array
         }
 
@@ -107,10 +111,14 @@
 
       $("#b-cancel").click(function(){//When booking cancel button is pressed
         if (window.but_id !== 'undefined'){//Check if a booking is selected
-          $.post("booking_cancel.php", {butID: window.but_id}, function(data, status){//Cancel booking using AJAX through 'booking_cancel.php' file, passing the booking id as parameter,
-            alert(status);//Show message box informing about booking being cancelled successfully
-            location.reload();//Reload the page, so the booking list is updated
-          });
+          if (confirm("You are about to cancel the booking, are you sure?\n(This action cannot be undone)") == true){
+            $.post("booking_cancel.php", {butID: window.but_id}, function(data, status){//Cancel booking using AJAX through 'booking_cancel.php' file, passing the booking id as parameter,
+              alert(status);//Show message box informing about booking being cancelled successfully
+              location.reload();//Reload the page, so the booking list is updated
+            });
+          }
+        }else{
+          alert("No booking has been selected!")
         }
       });
 
