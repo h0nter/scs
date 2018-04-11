@@ -4,7 +4,7 @@
 
   //If successReg flag doesn't exist in the session (user hasn't registered a new account)
   if (!isset($_SESSION['pass_change_success'])){
-    header('Location: pass_change.php');//Send user to the Details Change page
+    header('Location: passchange.php');//Send user to the Details Change page
     exit();//Exit this file
   }else{//If the successReg flag exists in the session
     unset($_SESSION['pass_change_success']);//Unset the 'pass_change_success' variable, so the user can't access this page again (utnil password changed again)

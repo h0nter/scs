@@ -49,25 +49,29 @@
       }else{
         $c_user_id = $_SESSION['user_id'];
 
-        $c_user_pass = $connection->query("SELECT password FROM users WHERE user_id='$c_user_id'");//Variable to store result of the SQL query which selects the user's current password from the db
+        $db_result = $connection->query("SELECT * FROM users WHERE user_id='$c_user_id'");//Variable to store result of the SQL query which selects the user's current password from the db
 
-        if (!$c_user_pass){//If the SQL query is unsuccessful
+        if (!$db_result){//If the SQL query is unsuccessful
           throw new Exception($connection->error);//Throw an exception containing the error
         }
 
-        if(!password_verify($passC, $c_user_pass)){//If comparing current password input by the user and the one fetched from the database is unsuccessful
-          $successVal = false;//Set successful validation flag to false
-          $_SESSION['e_passwordC'] = "Incorrect password!";//Set error message for 'current-password' field
-        }
+        $record = $db_result->fetch_assoc();//Get the record containing the password
+        $c_user_pass = $record['password'];//Assign password from the record to a local variable
 
-        //Change user password in the database
-        if(successVal == true){//If validation of all fields was successful
-          if($connection->query("UPDATE users SET password='$pass_hash' WHERE user_id='$c_user_id'")){//Update password hash in the 'password' field for the currently logged in user
-            $_SESSION['pass_change_success'] = true;//Set 'pass_change_success' global flag to true
-            header('Location: pass_change_success.php');//Direct user to the 'pass_change_success.php' file/page
-          }else{
-            throw new Exception($connection->error);//If the SQL query is unsuccessful, throw an exception containing the error
+
+        if(password_verify($passC, $c_user_pass)){//If comparing current password input by the user and the one fetched from the database is unsuccessful
+
+          //Change user password in the database
+          if(successVal == true){//If validation of all fields was successful
+            if($connection->query("UPDATE users SET password='$pass_hash' WHERE user_id='$c_user_id'")){//Update password hash in the 'password' field for the currently logged in user
+              $_SESSION['pass_change_success'] = true;//Set 'pass_change_success' global flag to true
+              header('Location: pass_change_success.php');//Direct user to the 'pass_change_success.php' file/page
+            }else{
+              throw new Exception($connection->error);//If the SQL query is unsuccessful, throw an exception containing the error
+            }
           }
+        }else{
+          $_SESSION['e_passwordC'] = "Incorrect password!";//Set error message for 'current-password' field
         }
 
         $connection->close();//Close the connection with the database
@@ -75,6 +79,7 @@
     }
     catch(Exception $e){
       echo '<span style="color: red;">Server error! Sorry for the inconvinience, please try again at a different time.</span>';//Show a server error message
+      exit();
       //echo '<br />Developer info: '.$e;//Display the detailed description of an error - DEVELOPER USE ONLY!!!
     }
   }
