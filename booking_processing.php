@@ -19,11 +19,8 @@ if (isset($_POST['booking-date'])){
   //Check if computer make is valid
   $comp_make = $_POST['make'];//Assign value submitted in the booking form to 'comp_make' variable
 
-  if ($comp_make == ""){//If 'comp_make' value is empty
-    $successVal = false;//Set successful validation flag to false
-    $_SESSION['e_make'] = "This field cannot be empty";//Set error message for 'comp_make' field
-  //If 'comp_make' variable isn't empty but doesn't have a valid value
-  }else if(($comp_make != "HP") && ($comp_make != "Lenovo") && ($comp_make != "Dell") && ($comp_make != "Asus") && ($comp_make != "Acer") && ($comp_make != "Apple") && ($comp_make != "Alienware") && ($comp_make != "Other")){
+
+if(($comp_make != "") && ($comp_make != "HP") && ($comp_make != "Lenovo") && ($comp_make != "Dell") && ($comp_make != "Asus") && ($comp_make != "Acer") && ($comp_make != "Apple") && ($comp_make != "Alienware") && ($comp_make != "Other")){
     $successVal = false;//Set successful validation flag to false
     $_SESSION['e_make'] = "Incorrect value!";//Set error message for 'make' field
   }

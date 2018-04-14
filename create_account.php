@@ -127,7 +127,7 @@
         throw new Exception(mysqli_connect_errno());//Throw an exception containing error number
       }else{
         //Check if the email exists in the db
-        $result = $connection->query("SELECT user_id FROM users WHERE email='$email'");//Assign user_id values from users table, where email is equal to user's email, to 'result' variable
+        $result = $connection->query(sprintf("SELECT user_id FROM users WHERE email='%s'", mysqli_real_escape_string($connection,$email)));//Assign user_id values from users table, where email is equal to user's email input, to 'result' variable
 
         if (!$result){//If the SQL query wasn't successful
           throw new Exception($connection->error);//Throw an exception containing the error

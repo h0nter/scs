@@ -60,21 +60,26 @@
 
             $pass_hash = password_hash($rand_pass, PASSWORD_DEFAULT);//Create hash for the randomly generated password
 
-            if ($connection->query("UPDATE users SET password = '$pass_hash'"){//Update the user password in the database with the random password hash
+            if ($connection->query(sprintf("UPDATE users SET password = '$pass_hash' WHERE email='%s'", mysqli_real_escape_string($connection,$email))));{//Update the user password in the database with the random password hash
               $msg = "Your new password is: $rand_pass"//Set the contents of the email
 
               if(mail($email,"Account password reset (Smith's Computer Service)",$msg)){//Send email containing the new random password to the email provided by the user
                 $_SESSION['pass_reset_success'] = true;//Set 'pass_reset_success' flag to success
                 header('Location: pass_reset_succes.php');//Direct user to the 'pass_reset_success.php' file/page
               }
-            }*/
+            }else{
+              throw new Exception($connection->error);//Throw a new exception containing the error
+            }
 
           }else{
             $_SESSION['e_email'] = "Incorrect email address!";//Set error message for 'email' field
-          }
+          }*/
+        }else{
+          $_SESSION['e_email'] = "Incorrect email address!";//Set error message for 'email' field
         }
 
         $connection->close();//Close the connection with the database
+      }
     }
     catch(Exception $e){//In case 'try' throws an exception
       echo '<span style="color: red;">Server error! Sorry for the inconvinience, please try again at a different time.</span>';//Display the server error message

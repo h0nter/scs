@@ -90,7 +90,7 @@
       <div class="heading">
         <h1>Thank you!</h1>
         <h3>Your password has been reset successfully</h3>
-        <a href="myaccount.php"><h3>You can now sign in using your new password</h3></a>
+        <a href="sign_in.php"><h3>You can now sign in using your new password</h3></a>
       </div>
     </div>
   </div>

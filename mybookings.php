@@ -103,12 +103,14 @@
   <script type="text/javascript" src="js/functions.js"></script>
   <script type="text/javascript" src="js/booking_form_val.js"></script>
   <script>
+    //Get booking details
     $(document).ready(function(){//When the file loads (do the function)
       $(".mb").click(function(){//When object of '.mb' class is pressed
         window.but_id = $(this).attr('mbbutton');//Assign id of the selected booking to the but_id variable
         $("#booking-details").load("bd_col.php", {butID: window.but_id});//Load booking data using AJAX through 'bd_col.php', passing the booking id as parameter
       });
 
+      //Cancel a booking
       $("#b-cancel").click(function(){//When booking cancel button is pressed
         if (window.but_id !== 'undefined'){//Check if a booking is selected
           if (confirm("You are about to cancel the booking, are you sure?\n(This action cannot be undone)") == true){
@@ -122,6 +124,7 @@
         }
       });
 
+      //Open booking form
       $("#booking-open").click(function(){//If booking-open button is clicked
           <?php
             if (isset($_SESSION['loggedIn'])){//If user is logged in
