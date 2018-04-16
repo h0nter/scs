@@ -16,7 +16,7 @@ function valEmailLog(){
 function valPasswordLog(){
   var password = document.forms["sign-in-f"]["user-password"].value;//Assign 'user-password' value from the sign in form to the 'password' variable
   const passwordObj = document.getElementById("sign-in-password");//Declare a constant referring to the 'sign-in-password' input field object
-  const regex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+/=?^_-].{8,}$/;//Declare a regular expression to validate the password (At least one UCase letter and one digit, any amount of letter, digits and special characters, 8 or more characters long)
+  const regex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+/=?^_-]{8,}$/;//Declare a regular expression to validate the password (At least one UCase letter and one digit, any amount of letter, digits and special characters, 8 or more characters long)
 
   if (regex.test(password)){//If 'password' variable validation with the regex above is successful
     return true;//Return true

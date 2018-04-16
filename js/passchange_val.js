@@ -10,7 +10,7 @@
 function valCurrentPswrd(){
   var crntPassword = document.forms["pass-change-form"]["current-password"].value;//Assign 'current-password' value from the password change form to the 'crntPassword' variable
   const crntPasswordObj = document.getElementById("pass-change-crntpass");//Declare a constant referring to the 'pass-change-crntpass' input field object
-  const regex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+/=?^_-].{8,}$/;//Declare a regular expression to validate the password (At least one UCase letter and one digit, any amount of letter, digits and special characters, 8 or more characters long)
+  const regex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+/=?^_-]{8,}$/;//Declare a regular expression to validate the password (At least one UCase letter and one digit, any amount of letter, digits and special characters, 8 or more characters long)
 
   if (regex.test(crntPassword)){//If 'crntPassword' variable validation with the regex above is successful
     return true;//Return true
@@ -30,7 +30,7 @@ function valNewPswrd(){
   var confirmPassword = document.forms["pass-change-form"]["confirm-password"].value;//Assign 'confirm-password' value from the password change form to the 'confirmPassword' variable
   const confrimPasswordObj = document.getElementById("pass-change-confirmpass");//Declare a constant referring to the 'pass-change-confirmpass' input field object
 
-  const regex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+/=?^_-].{8,}$/;//Declare a regular expression to validate the password (At least one UCase letter and one digit, any amount of letter, digits and special characters, 8 or more characters long)
+  const regex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+/=?^_-]{8,}$/;//Declare a regular expression to validate the password (At least one UCase letter and one digit, any amount of letter, digits and special characters, 8 or more characters long)
 
   if (regex.test(newPassword)){//If 'newPassword' variable validation with the regex above is successful
     if (newPassword == confirmPassword){//If 'newPassword' is equal to 'confirmPassword' variable

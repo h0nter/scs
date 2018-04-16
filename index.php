@@ -20,9 +20,9 @@
     //Check if the service description is valid
     $contact_message = $_POST['message-contact'];//Store contact message input in variable
 
-    if ($contact_message == ""){//If 'contact_message' variable is empty
+    if (($contact_message == "") || (strlen($contact_message) > 4000)){//If 'contact_message' variable is empty or is more than 4000 characters
       $contactSVal = false;//Set 'contactSVal' flag to false
-      $_SESSION['e_cmessage'] = "This field cannot be empty";//Set error message for 'message-contact' field
+      $_SESSION['e_cmessage'] = "This field cannot be empty or over 4000 characters";//Set error message for 'message-contact' field
     }
 
     if ($contactSVal == true){//If validation is successful
@@ -256,7 +256,7 @@
     <div id="contact-form">
       <form id="c-form" method="post" onsubmit="return !!(valContactMessage() & valContactEmail());">
         <div id="email-and-send">
-          <input type="text" name="email-contact" id="email-contact" placeholder="Your e-mail"/>
+          <input type="email" name="email-contact" id="email-contact" placeholder="Your e-mail" required/>
 
           <input id="submit-contact" type="submit" value="SEND MESSAGE&#8594;"/>
         </div>
@@ -269,7 +269,7 @@
         ?>
 
         <div id="contact-text-input">
-          <textarea name="message-contact" id="message-contact" maxlength="4000" rows="17" placeholder="Your message..."></textarea>
+          <textarea name="message-contact" id="message-contact" maxlength="4000" rows="17" placeholder="Your message..." required></textarea>
         </div>
         <?php
           if (isset($_SESSION['e_cmessage'])){//If contact_message error exists (user has made an error - validation unsuccessful)

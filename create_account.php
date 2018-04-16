@@ -38,7 +38,7 @@
     //Check if the passwords are valid
     $pass1 = $_POST['u-password'];//Assign password value submitted in the create account form to 'pass1' variable
     $pass2 = $_POST['pass-confirm'];//Assign confirm password value submitted in the create account form to 'pass2' variable
-    $regex = "/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+=?^_-].{8,}$/";//Set regular expression for password validation
+    $regex = "/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+=?^_-]{8,}$/";//Set regular expression for password validation
 
     if (!preg_match($regex, $pass1)){//If 'pass1' validation is unsuccesful
       $successVal = false;//Set successful validation flag to false
@@ -141,7 +141,7 @@
         }
 
         if($successVal == true){//If validation IS successful
-          if ($connection->query("INSERT INTO users VALUES (NULL, '$forename','$surname','$email','$pass_hash','$phone_num','$address','$address2','$city','$postcode')")){//Add user to the database - If INSERT SQL query is successful
+          if ($connection->query("INSERT INTO users VALUES (NULL, '$forename','$surname','$email','$pass_hash','$phone_num','$address','$address2','$city','$postcode',0)")){//Add user to the database - If INSERT SQL query is successful
             $_SESSION['successReg']=true;//set global/session variable 'successReg' to true - indicates that user registered a new account
             header('Location: welcome.php');//Direct user to the 'welcome.php' page
           }else{

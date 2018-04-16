@@ -147,7 +147,7 @@ function valPostcodebook(){
 function valDescriptionbook(){
   var description = document.forms["b-form"]["service-description"].value;//Assign 'service-description' value from the booking form to the 'description' variable
   const descriptionObj = document.getElementById("service-description");//Declare a constant referring to the 'service-description' input field object
-  const regex = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]{3,1000}$/;//Declare a regular expression to validate the service description (LCase and UCase letters, numbers and special characters, between 3 and 1000 characters long)
+  const regex = /^[a-zA-Z0-9!#$%&'*+/=?^_,\.`{|}~-\s]{3,1000}$/;//Declare a regular expression to validate the service description (LCase and UCase letters, numbers and special characters, between 3 and 1000 characters long)
 
   if (regex.test(description)){//If 'description' variable validation with the regex above is successful
     return true;//Return true

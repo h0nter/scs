@@ -48,9 +48,13 @@
           $_SESSION['city'] = $record['city'];
           $_SESSION['postcode'] = $record['postcode'];
 
+          if ($record['admin'] != 0){//Check if the user is an admin
+            $_SESSION['admin'] = true;//If they are, set admin variable to true
+          }
+
           unset($_SESSION['loginError']);//Remove log-in error variable
           $db_result->free_result();//Free up the space in memory 'locked' by the SQL query result variable
-          header('Location: myaccount.php');//Login is successful, send user to their account page
+          header('Location: myaccount_sysadmin.php');//Login is successful, send user to their account page
         }else{//If no users were found in the db
           $_SESSION['loginError'] = '<span style="color: red">Incorrect email or password!</span>';//Variable with message in case of an error
           header('Location: sign_in.php');//Send user back to the Sign In page

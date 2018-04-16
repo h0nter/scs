@@ -2,13 +2,19 @@
 
   session_start();//Start user session for global variables
 
-  //If loggedIn flag exists in the session and is true (user is signed in)
-  if ((isset($_SESSION['loggedIn'])) && ($_SESSION['loggedIn'] == true)){
-    header('Location: myaccount_sysadmin.php');//Send user to their account page
+  //If loggedIn flag doesn't exist (user isn't logged in)
+  if (!isset($_SESSION['loggedIn'])){
+    header('Location: sign_in.php');//Send user to the Sign In page
+    exit();//Exit this file
+  }
+
+  if(!isset($_SESSION['admin'])){//If user isn't an administrator
+    header('Location: myaccount.php');//Send user to My Account page
     exit();//Exit this file
   }
 
   require_once "booking_processing.php";//Link the booking form processing script
+
 ?>
 
 <!DOCTYPE html>
@@ -29,8 +35,7 @@
 
   <!-- JavaScript
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="js/sign_in_val.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="js/functions.js"></script>
   <script type="text/javascript" src="js/booking_form_val.js"></script>
   <script>
@@ -50,6 +55,7 @@
     });
   });
   </script>
+
   <!-- Page icon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
@@ -68,51 +74,58 @@
     </div>
   </div>
 
-  <div id="sign-in-main">
-    <div class="nav-bar">
-      <div id="nav">
-        <ul>
-          <li><a href="index.php#landing-page" id="home-nav">Home</a></li>
-          <li><a href="index.php#about" id="about-nav">About</a></li>
-          <li><a href="index.php#services" id="services-nav">Services</a></li>
-          <li><a href="index.php#services" id="prices-nav">Prices</a></li>
-          <li><a href="index.php#contact" id="contact-nav">Contact</a></li>
-          <li><a href="myaccount.php">My Account</a></li>
-          <li><button id="booking-open" class="astext" onclick="on()">Booking</button></li>
-          <li><a href="sign_in.php" style="color: #5B0606">Sign In</a></li>
-        </ul>
+  <!-- Landing page & nav-bar -->
+  <div id="account-main" style="background-image: url(images/gradient.jpg);">
+
+    <div id="landing-page-account">
+      <div class="nav-bar">
+        <div id="nav">
+          <ul>
+            <li><a href="index.php#landing-page" id="home-nav">Home</a></li>
+            <li><a href="index.php#about" id="about-nav">About</a></li>
+            <li><a href="index.php#services" id="services-nav">Services</a></li>
+            <li><a href="index.php#services" id="prices-nav">Prices</a></li>
+            <li><a href="index.php#contact" id="contact-nav">Contact</a></li>
+            <li><a href="myaccount.php" style="color: #5B0606">My Account</a></li>
+            <li><button id="booking-open" class="astext" onclick="on()">Booking</button></li>
+            <li><a href="sign_in.php">Sign In</a></li>
+          </ul>
+        </div>
       </div>
+
+        <div id="header-account" class="container">
+          <div class="row" style="text-align: center;">
+            <?php
+              echo "<h1>Hi ".$_SESSION['first_name']."</h1>";//Display welcome message with user's name
+            ?>
+            <h3>It's nice to see you again</h3>
+            <h3><a href="logout.php">Log out</a></h3><!--Log out button-->
+          </div>
+        </div>
     </div>
 
-    <div id="sign-in-form" class="container">
-      <div class="heading">
-        <h1>Sign In</h1>
-      </div>
-
-      <!--Pass the values of this form to the 'login.php' file using post method-->
-      <form id="sign-in-f" action="login.php" method="post" onsubmit="return !!(valEmailLog() & valPasswordLog());">
-        <label for="email-address" class="s-form-label">Email address:</label><br>
-        <input type="email" name="email-address" id="sign-in-email" required><br>
-
-        <label for="user-password" class="s-form-label">Password:</label><br>
-        <input type="password" name="user-password" id="sign-in-password" required><br>
-
-        <div id="register-reset-links">
-          <h3>
-            <?php
-              if (isset($_SESSION['loginError'])){//If there was a log-in error
-                echo $_SESSION['loginError'];//Show log-in error message
-              }
-
-            ?>
-          </h3>
-
-          <h3><a href="create_account.php">Don't have an account? Register now!</a></h3>
-          <h3><a href="passreset.php">Forgot your password?</a></h3>
+    <div id="account-menu" class="container">
+      <div id="menu-stripe">
+        <div id="init-circle">
+          <?php
+            echo "<h1>".substr($_SESSION['first_name'],0,1)."</h1>";//Get first letter from user's name to show in the circle
+          ?>
         </div>
 
-        <input type="submit" value="Sign In">
-      </form>
+        <div id="menu-bars">
+          <div class="m-bar" style="background-image: url(images/Menu-bar1.png); width: 48.5rem;">
+            <h3 style="font-size: 4.3rem;"><a href="mybookings_sysadmin.php">Manage Bookings</a></h3>
+          </div>
+
+          <div class="m-bar" style="background-image: url(images/Menu-bar2.png); width: 42.1rem;">
+            <h3 style="font-size: 4.2rem;"><a href="details_edit.php">Edit My Details</a></h3>
+          </div>
+
+          <div class="m-bar" style="background-image: url(images/Menu-bar3.png); width: 36.2rem;">
+            <h3 style="font-size: 3.6rem;"><a href="passchange.php">Change Password</a></h3>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

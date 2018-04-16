@@ -14,7 +14,7 @@
 
     //Check if the current password is valid
     $passC = $_POST['current-password'];//Assign 'current-password' input to 'passC' variable
-    $regex = "/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+=?^_-].{8,}$/";//Set regular expression to validate the current password
+    $regex = "/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+=?^_-]{8,}$/";//Set regular expression to validate the current password
 
     if(!preg_match($regex, $passC)){//If current password validation is unsuccessful
       $successVal = false;//Set successful validation flag to false
@@ -24,7 +24,7 @@
     //Check if the new passwords are valid
     $pass1 = $_POST['new-password'];//Assign 'new-password' input to 'pass1' variable
     $pass2 = $_POST['confirm-password'];//Assign 'confirm-password' input to 'pass2' variable
-    $regex = "/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+=?^_-].{8,}$/";//Set regular expression to validate the new password
+    $regex = "/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+=?^_-]{8,}$/";//Set regular expression to validate the new password
 
     if (!preg_match($regex, $pass1)){//If new password validation is unsuccessful
       $successVal = false;//Set successful validation flag to false

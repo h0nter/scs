@@ -57,7 +57,7 @@ function valPasswords(){
   var confirmPassword = document.forms["account-create-f"]["pass-confirm"].value;//Assign 'pass-confirm' value from the create account form to the 'confirmPassword' variable
   const confrimPasswordObj = document.getElementById("new-account-passconf");//Declare a constant referring to the 'new-account-passconf' input field object
 
-  const regex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+/=?^_-].{8,}$/;//Declare a regular expression to validate the password (At least one UCase letter and one digit, any amount of letter, digits and special characters, 8 or more characters long)
+  const regex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!#$%&'*+/=?^_-]{8,}$/;//Declare a regular expression to validate the password (At least one UCase letter and one digit, any amount of letter, digits and special characters, 8 or more characters long)
 
   if (regex.test(newPassword)){//If 'newPassword' variable validation with the regex above is successful
     if (newPassword == confirmPassword){//If 'newPassword' is equal to 'confirmPassword' variable
@@ -69,7 +69,7 @@ function valPasswords(){
       confrimPasswordObj.classList.add('invalid-field');//Add red border and background to the 'new-account-passconf' element of the page
       document.forms["account-create-f"]["u-password"].value = "";//Reset the input field value
       document.forms["account-create-f"]["pass-confirm"].value = "";//Reset the input field value
-      alert("Incorrect password format!\nPassword should consist of:\n- At least 1 uppercase letter\n- At least 1 digit\n- Minimum 8 characters");//Show error message
+      alert("Entered passwords don't match!");//Show error message
       return false;//Return false - validation unsuccessful
     }
   }else{//If validation with regular expression is unsuccessful
